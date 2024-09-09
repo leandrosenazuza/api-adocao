@@ -1,4 +1,4 @@
-package api_adocao.api_adocao;
+package api_adocao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
