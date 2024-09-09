@@ -2,6 +2,7 @@ package api_adocao.Controller;
 
 import api_adocao.Model.Animal;
 import api_adocao.Repository.AnimalRepository;
+import api_adocao.Service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,39 +13,30 @@ import java.util.List;
 public class AnimalController {
 
     @Autowired
-    private AnimalRepository animalRepository;
+    private AnimalService animalService;
 
     @GetMapping("/all")
     public List<Animal> getAllAnimals() {
-        return animalRepository.findAll();
+        return animalService.getAllAnimals();
     }
 
     @GetMapping("/{id}")
     public Animal getAnimalById(@PathVariable Long id) {
-        return animalRepository.findById(id).orElseThrow(() -> new RuntimeException("Animal not found"));
+        return animalService.getAnimalById(id);
     }
 
     @PostMapping
     public Animal createAnimal(@RequestBody Animal animal) {
-        return animalRepository.save(animal);
+        return animalService.createAnimal(animal);
     }
 
     @PutMapping("/{id}")
     public Animal updateAnimal(@PathVariable Long id, @RequestBody Animal animal) {
-        if (animalRepository.existsById(id)) {
-            animal.setId(id);
-            return animalRepository.save(animal);
-        } else {
-            throw new RuntimeException("Animal not found");
-        }
+        return animalService.updateAnimal(id, animal);
     }
 
     @DeleteMapping("/{id}")
     public void deleteAnimal(@PathVariable Long id) {
-        if (animalRepository.existsById(id)) {
-            animalRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Animal not found");
-        }
+        animalService.deleteAnimal(id);
     }
 }

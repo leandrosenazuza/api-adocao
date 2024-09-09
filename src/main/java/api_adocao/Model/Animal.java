@@ -1,10 +1,9 @@
 package api_adocao.Model;
 
 import api_adocao.Model.Interface.IAnimal;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import api_adocao.Util.AnimalEnums;
+import api_adocao.Util.Raca;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -15,6 +14,17 @@ public class Animal implements IAnimal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String raca;
     private double idade;
+    private String porte;
+    private String raca;
+    private String especie;
+    private String comportamento;
+    private boolean isCastrado;
+    private boolean isVermifugado;
+    private boolean isVacinado;
+    private boolean isCirurgia;
+    private String descricaoCirurgia;
+    private String descricaoAnimal;
+    private String foto;
 }
+
