@@ -1,0 +1,30 @@
+2024-09-22 16:33:05.166885-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "especie" already exists; SQL statement:
+CREATE TABLE especie (
+                         id BIGSERIAL PRIMARY KEY,
+                         descricao_especie VARCHAR(255) NOT NULL
+) [42101-224]
+2024-09-22 16:33:27.253939-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "especie" already exists; SQL statement:
+CREATE TABLE especie (
+                         id BIGSERIAL PRIMARY KEY,
+                         descricao_especie VARCHAR(255) NOT NULL
+) [42101-224]
+2024-09-22 16:33:42.311248-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "especie" already exists; SQL statement:
+CREATE TABLE especie (
+                         id BIGSERIAL PRIMARY KEY,
+                         descricao_especie VARCHAR(255) NOT NULL
+) [42101-224]
+2024-09-22 16:36:06.762844-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select * [*]raca"; SQL statement:
+select * raca [42000-224]
+2024-09-22 16:37:23.866185-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "comportamento" already exists; SQL statement:
+-- Criação da tabela 'comportamento'
+CREATE TABLE comportamento (
+                               id BIGSERIAL PRIMARY KEY,
+                               descricao_ [42101-224]
+2024-09-22 16:39:52.068131-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "cirurgia" not found; SQL statement:
+select * from cirurgia [42102-224]
