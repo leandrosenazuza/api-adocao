@@ -1,7 +1,6 @@
 package api_adocao.Controller;
 
 import api_adocao.Model.Animal;
-import api_adocao.Repository.AnimalRepository;
 import api_adocao.Service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

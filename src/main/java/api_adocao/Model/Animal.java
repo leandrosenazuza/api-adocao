@@ -1,30 +1,50 @@
 package api_adocao.Model;
 
-import api_adocao.Model.Interface.IAnimal;
-import api_adocao.Util.AnimalEnums;
-import api_adocao.Util.Raca;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-public class Animal implements IAnimal {
+public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private double idade;
-    private String porte;
-    private String raca;
-    private String especie;
-    private String comportamento;
+
+    @ManyToOne
+    @JoinColumn(name = "porte_id")
+    private Porte porte;
+
+    @ManyToOne
+    @JoinColumn(name = "raca_id")
+    private Raca raca;
+
+    @ManyToOne
+    @JoinColumn(name = "especie_id")
+    private Especie especie;
+
+    @ManyToOne
+    @JoinColumn(name = "comportamento_id")
+    private Comportamento comportamento;
+
+    @ManyToOne
+    @JoinColumn(name = "descricao_cirurgia_id")
+    private Cirurgia descricaoCirurgia;
+
     private boolean isCastrado;
+
     private boolean isVermifugado;
+
     private boolean isVacinado;
+
     private boolean isCirurgia;
-    private String descricaoCirurgia;
+
     private String descricaoAnimal;
+
     private String foto;
 }
 
