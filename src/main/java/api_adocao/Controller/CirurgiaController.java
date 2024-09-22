@@ -1,7 +1,9 @@
 package api_adocao.Controller;
 
 import api_adocao.Model.Cirurgia;
+import api_adocao.Model.DTO.CirurgiaDTO;
 import api_adocao.Service.CirurgiaService;
+import api_adocao.Util.Mapper.CirurgiaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,8 @@ import java.util.List;
 public class CirurgiaController {
     @Autowired
     private CirurgiaService cirurgiaService;
+
+    private CirurgiaMapper cirurgiaMapper = new CirurgiaMapper();
 
     @GetMapping("/all")
     public List<Cirurgia> getAllCirurgias() {
@@ -24,8 +28,8 @@ public class CirurgiaController {
     }
 
     @PostMapping
-    public Cirurgia createCirurgia(@RequestBody Cirurgia cirurgia) {
-        return cirurgiaService.createCirurgia(cirurgia);
+    public Cirurgia createCirurgia(@RequestBody CirurgiaDTO cirurgiaDTO) {
+        return cirurgiaService.createCirurgia(cirurgiaMapper.toEntity(cirurgiaDTO));
     }
 
     @PutMapping("/{id}")
