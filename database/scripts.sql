@@ -6,6 +6,7 @@ CREATE TABLE especie (
                          descricao_especie VARCHAR(255) NOT NULL
 );
 
+
 -- Inserções na tabela 'especie'
 INSERT INTO especie (id, descricao_especie) VALUES (1, 'Gato');
 INSERT INTO especie (id, descricao_especie) VALUES (2, 'Cachorro');
