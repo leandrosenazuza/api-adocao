@@ -1,6 +1,5 @@
 package api_adocao.Service;
 
-import api_adocao.Model.Animal;
 import api_adocao.Model.Especie;
 import api_adocao.Repository.EspecieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
