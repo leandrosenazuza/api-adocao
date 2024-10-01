@@ -79,12 +79,12 @@ CREATE TABLE animal (
 
 -- Inserindo um Labrador de porte grande e espécie canina
 INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Rex', 5.0, 1, 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'rex_foto.jpg');
+VALUES ('Rex', 5.0, 1, 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://img.freepik.com/fotos-gratis/cao-pug-isolado-em-um-fundo-branco_2829-11416.jpg?w=740&t=st=1727745940~exp=1727746540~hmac=7c8c3c49b915704d67ed2cb8539df735d5b2d1d3f7f75ea0717e2c7b553e176a');
 
 -- Inserindo um Poodle de porte médio e espécie canina
 INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Max', 3.0, 2, 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brincalhão', 'max_foto.jpg');
+VALUES ('Max', 3.0, 2, 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brincalhão', 'https://img.freepik.com/psd-gratuitas/cena-fofa-de-cachorro-marrom-e-branco_23-2150179279.jpg?w=360&t=st=1727745887~exp=1727746487~hmac=a959ec9ad996d51c0873e5f5c4326f427ca6e6557f0ed969604eb97332d3b02a');
 
 -- Inserindo um gato Siamês de porte pequeno e espécie felina
 INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Mimi', 2.0, 3, 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'mimi_foto.jpg');
+VALUES ('Mimi', 2.0, 3, 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'https://png.pngtree.com/png-clipart/20210822/original/pngtree-cat-striped-whiskers-png-image_6651811.jpg');
