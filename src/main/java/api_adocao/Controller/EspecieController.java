@@ -1,8 +1,10 @@
 package api_adocao.Controller;
 
 import api_adocao.Exceptions.EntidadeNaoEncontradaException;
+import api_adocao.Model.DTO.EspecieDTO;
 import api_adocao.Model.Especie;
 import api_adocao.Service.EspecieService;
+import api_adocao.Util.Mapper.EspecieMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +19,10 @@ public class EspecieController {
     @Autowired
     private EspecieService especieService;
 
+    private EspecieMapper especieMapper = new EspecieMapper();
+
     @GetMapping("/all")
     public List<Especie> getAllAnimals() {
-
         return especieService.getAllEspecie();
     }
 
@@ -33,10 +36,10 @@ public class EspecieController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Especie criarEspecie(@RequestBody Especie especie) {
-        return especieService.criarEspecie(especie);
+    public Especie criarEspecie(@RequestBody EspecieDTO especieDTO) {
+        return especieService.criarEspecie(especieMapper.toEntity(especieDTO));
     }
 
     @PutMapping("/{id}")
