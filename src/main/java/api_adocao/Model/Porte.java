@@ -21,5 +21,5 @@ public class Porte {
     private String descricaoPorte;
 
     @Column(nullable = false, unique = true)
-    private String name;
+    private String nome;
 }

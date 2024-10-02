@@ -19,6 +19,9 @@ public class Raca {
     @Column(name = "descricao_raca", nullable = false)
     private String descricaoRaca;
 
+    @Column(nullable = false, updatable = false)
+    private String nome;
+
     @ManyToOne
     @JoinColumn(name = "porte_id", nullable = false)
     private Porte porte;
