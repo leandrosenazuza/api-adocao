@@ -18,7 +18,4 @@ public class Especie {
 
     @Column(name = "descricao_especie", nullable = false)
     private String descricaoEspecie;
-
-    @Column(nullable = false, unique = true)
-    private String nome;
 }

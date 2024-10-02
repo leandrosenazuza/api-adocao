@@ -4,18 +4,16 @@ import api_adocao.Exceptions.EntidadeNaoEncontradaException;
 import api_adocao.Model.Especie;
 import api_adocao.Repository.EspecieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import org.springframework.dao.DataIntegrityViolationException;
 
 @Service
 public class EspecieService {
 
     @Autowired
     private EspecieRepository especieRepository;
-
-    public List<Especie> listarTodasEspecies() {
-        return especieRepository.findAll();
-    }
 
     public Especie buscarEspeciePorId(Long id) {
         return especieRepository.findById(id)
@@ -28,7 +26,7 @@ public class EspecieService {
 
     public Especie atualizarEspecie(Long id, Especie especieAtualizada) {
         Especie especieExistente = buscarEspeciePorId(id);
-        especieExistente.setNome(especieAtualizada.getNome());
+        especieExistente.setDescricaoEspecie(especieAtualizada.getDescricaoEspecie());
         return especieRepository.save(especieExistente);
     }
 

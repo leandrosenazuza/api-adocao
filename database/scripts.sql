@@ -88,3 +88,30 @@ VALUES ('Max', 3.0, 2, 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brinc
 -- Inserindo um gato Siamês de porte pequeno e espécie felina
 INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Mimi', 2.0, 3, 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'mimi_foto.jpg');
+
+
+-- Criação de sequências para cada tabela
+
+-- Sequência para a tabela 'especie'
+CREATE SEQUENCE especie_id_seq;
+ALTER TABLE especie ALTER COLUMN id SET DEFAULT nextval('especie_id_seq');
+
+-- Sequência para a tabela 'porte'
+CREATE SEQUENCE porte_id_seq;
+ALTER TABLE porte ALTER COLUMN id SET DEFAULT nextval('porte_id_seq');
+
+-- Sequência para a tabela 'raca'
+CREATE SEQUENCE raca_id_seq;
+ALTER TABLE raca ALTER COLUMN id SET DEFAULT nextval('raca_id_seq');
+
+-- Sequência para a tabela 'comportamento'
+CREATE SEQUENCE comportamento_id_seq;
+ALTER TABLE comportamento ALTER COLUMN id SET DEFAULT nextval('comportamento_id_seq');
+
+-- Sequência para a tabela 'cirurgia'
+CREATE SEQUENCE cirurgia_id_seq;
+ALTER TABLE cirurgia ALTER COLUMN id SET DEFAULT nextval('cirurgia_id_seq');
+
+-- Sequência para a tabela 'animal'
+CREATE SEQUENCE animal_id_seq;
+ALTER TABLE animal ALTER COLUMN id SET DEFAULT nextval('animal_id_seq');

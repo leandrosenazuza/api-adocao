@@ -50,7 +50,7 @@ public class EspecieController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void deletarEspecie(@PathVariable Long id) {
         especieService.deletarEspecie(id);
     }
