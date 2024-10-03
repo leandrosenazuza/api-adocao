@@ -44,12 +44,8 @@ public class EspecieController {
 
     @PutMapping("/put/{id}")
     public ResponseEntity<Especie> atualizarEspecie(@PathVariable Long id, @RequestBody EspecieDTO especieDTO) {
-        try {
-            Especie especieAtualizada = especieService.atualizarEspecie(id, especieMapper.toEntity(especieDTO));
-            return ResponseEntity.ok(especieAtualizada);
-        } catch (EntidadeNaoEncontradaException e) {
-            return ResponseEntity.notFound().build();
-        }
+        Especie especieAtualizada = especieService.atualizarEspecie(id, especieMapper.toEntity(especieDTO));
+        return ResponseEntity.ok(especieAtualizada);
     }
 
     @DeleteMapping("/delete/{id}")
