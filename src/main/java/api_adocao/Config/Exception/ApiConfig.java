@@ -14,6 +14,4 @@ public class ApiConfig implements WebMvcConfigurer {
                 .allowedMethods("*")
                 .allowedHeaders("*");
     }
-
-
 }
