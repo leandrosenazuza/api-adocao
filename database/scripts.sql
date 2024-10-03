@@ -1,5 +1,3 @@
--- Quando começar o projeto, executar esse script para criar as tabelas.
-
 -- Criação da tabela 'especie'
 CREATE TABLE especie (
                          id BIGSERIAL PRIMARY KEY,
@@ -38,7 +36,6 @@ INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Poodle', 2, 2);
 -- Siamês é um gato de porte pequeno
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Siamês', 1, 1);
 
-
 -- Criação da tabela 'comportamento'
 CREATE TABLE comportamento (
                                id BIGSERIAL PRIMARY KEY,
@@ -55,11 +52,11 @@ CREATE TABLE cirurgia (
                           id BIGSERIAL PRIMARY KEY,
                           descricao_cirurgia VARCHAR(255) NOT NULL
 );
+
 -- Inserções na tabela 'cirurgia'
 INSERT INTO cirurgia (id, descricao_cirurgia) VALUES (1, 'Castração');
 INSERT INTO cirurgia (id, descricao_cirurgia) VALUES (2, 'Retirada de Tumor');
 INSERT INTO cirurgia (id, descricao_cirurgia) VALUES (3, 'Amputação');
-
 
 -- Criação da tabela 'animal'
 CREATE TABLE animal (
@@ -79,12 +76,12 @@ CREATE TABLE animal (
 
 -- Inserindo um Labrador de porte grande e espécie canina
 INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Rex', 5.0, 1, 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://img.freepik.com/fotos-gratis/cao-pug-isolado-em-um-fundo-branco_2829-11416.jpg?w=740&t=st=1727745940~exp=1727746540~hmac=7c8c3c49b915704d67ed2cb8539df735d5b2d1d3f7f75ea0717e2c7b553e176a');
+VALUES ('Rex', 5.0, 1, 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
 
 -- Inserindo um Poodle de porte médio e espécie canina
 INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Max', 3.0, 2, 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brincalhão', 'https://img.freepik.com/psd-gratuitas/cena-fofa-de-cachorro-marrom-e-branco_23-2150179279.jpg?w=360&t=st=1727745887~exp=1727746487~hmac=a959ec9ad996d51c0873e5f5c4326f427ca6e6557f0ed969604eb97332d3b02a');
+VALUES ('Max', 3.0, 2, 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brincalhão', 'https://i0.statig.com.br/bancodeimagens/78/pt/gs/78ptgsfeddfh638dkkzya5p3y.jpg');
 
 -- Inserindo um gato Siamês de porte pequeno e espécie felina
 INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Mimi', 2.0, 3, 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'https://png.pngtree.com/png-clipart/20210822/original/pngtree-cat-striped-whiskers-png-image_6651811.jpg');
+VALUES ('Mimi', 2.0, 3, 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'https://midias.correiobraziliense.com.br/_midias/jpg/2024/01/31/675x450/1_sgrg-34614010.jpg?20240203041551?20240203041551');

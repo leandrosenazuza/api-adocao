@@ -29,8 +29,7 @@ public class CirurgiaController {
 
     @PostMapping
     public Cirurgia createCirurgia(@RequestBody CirurgiaDTO cirurgiaDTO) {
-        Cirurgia cirurgia = new Cirurgia();
-        return cirurgiaService.createCirurgia(cirurgia);
+        return cirurgiaService.createCirurgia(cirurgiaMapper.toEntity(cirurgiaDTO));
     }
 
     @PutMapping("/{id}")
