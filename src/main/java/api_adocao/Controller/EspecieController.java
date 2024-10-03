@@ -21,12 +21,12 @@ public class EspecieController {
 
     private EspecieMapper especieMapper = new EspecieMapper();
 
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     public List<Especie> getAllAnimals() {
         return especieService.getAllEspecie();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Especie> buscarEspeciePorId(@PathVariable Long id) {
         try {
             Especie especie = especieService.buscarEspeciePorId(id);
@@ -42,18 +42,17 @@ public class EspecieController {
         return especieService.criarEspecie(especieMapper.toEntity(especieDTO));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Especie> atualizarEspecie(@PathVariable Long id, @RequestBody Especie especie) {
+    @PutMapping("/put/{id}")
+    public ResponseEntity<Especie> atualizarEspecie(@PathVariable Long id, @RequestBody EspecieDTO especieDTO) {
         try {
-            Especie especieAtualizada = especieService.atualizarEspecie(id, especie);
+            Especie especieAtualizada = especieService.atualizarEspecie(id, especieMapper.toEntity(especieDTO));
             return ResponseEntity.ok(especieAtualizada);
         } catch (EntidadeNaoEncontradaException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @DeleteMapping("/delete/{id}")
     public void deletarEspecie(@PathVariable Long id) {
         especieService.deletarEspecie(id);
     }

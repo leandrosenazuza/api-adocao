@@ -14,8 +14,6 @@ import lombok.NoArgsConstructor;
 public class Especie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "especie_id_seq")
-    @SequenceGenerator(name = "especie_id_seq", sequenceName = "especie_id_seq", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 
