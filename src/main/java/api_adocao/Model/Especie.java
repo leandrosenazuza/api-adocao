@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Especie {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 

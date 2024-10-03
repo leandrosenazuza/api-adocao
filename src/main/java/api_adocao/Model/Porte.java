@@ -13,12 +13,10 @@ import lombok.NoArgsConstructor;
 public class Porte {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "descricao_porte", nullable = false)
     private String descricaoPorte;
-
-    @Column(nullable = false, unique = true)
-    private String nome;
 }

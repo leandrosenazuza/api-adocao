@@ -29,7 +29,7 @@ public class RacaService {
 
     public Raca atualizarRaca(Long id, Raca racaAtualizada) {
         Raca racaExistente = buscarRacaPorId(id);
-        racaExistente.setNome(racaAtualizada.getNome());
+        racaExistente.setDescricaoRaca(racaAtualizada.getDescricaoRaca());
         return racaRepository.save(racaExistente);
     }
 

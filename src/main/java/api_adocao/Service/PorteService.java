@@ -29,7 +29,7 @@ public class PorteService {
 
     public Porte atualizarPorte(Long id, Porte porteAtualizado) {
         Porte porteExistente = buscarPortePorId(id);
-        porteExistente.setNome(porteAtualizado.getNome());
+        porteExistente.setDescricaoPorte(porteAtualizado.getDescricaoPorte());
         return porteRepository.save(porteExistente);
     }
 
