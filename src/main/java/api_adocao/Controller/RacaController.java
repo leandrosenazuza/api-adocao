@@ -1,8 +1,10 @@
 package api_adocao.Controller;
 
 import api_adocao.Exceptions.EntidadeNaoEncontradaException;
+import api_adocao.Model.DTO.RacaDTO;
 import api_adocao.Model.Raca;
 import api_adocao.Service.RacaService;
+import api_adocao.Util.Mapper.RacaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +19,14 @@ public class RacaController {
     @Autowired
     private RacaService racaService;
 
-    @GetMapping("/all")
+    private RacaMapper racaMapper = new RacaMapper();
+
+    @GetMapping("/get/all")
     public List<Raca> getAllAnimals() {
         return racaService.getAllRaca();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Raca> buscarRacaPorId(@PathVariable Long id) {
         try {
             Raca raca = racaService.buscarRacaPorId(id);
@@ -32,24 +36,20 @@ public class RacaController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Raca criarRaca(@RequestBody Raca raca) {
-        return racaService.criarRaca(raca);
+    public Raca criarRaca(@RequestBody RacaDTO racaDTO) {
+
+        return racaService.criarRaca(racaMapper.toEntity(racaDTO));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Raca> atualizarRaca(@PathVariable Long id, @RequestBody Raca raca) {
-        try {
-            Raca racaAtualizada = racaService.atualizarRaca(id, raca);
+    @PutMapping("/put/{id}")
+    public ResponseEntity<Raca> atualizarRaca(@PathVariable Long id, @RequestBody RacaDTO racaDTO) {
+            Raca racaAtualizada = racaService.atualizarRaca(id, racaMapper.toEntity(racaDTO));
             return ResponseEntity.ok(racaAtualizada);
-        } catch (EntidadeNaoEncontradaException e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/delete/{id}")
     public void deletarRaca(@PathVariable Long id) {
         racaService.deletarRaca(id);
     }

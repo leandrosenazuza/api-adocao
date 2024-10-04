@@ -3,6 +3,7 @@ package api_adocao.Service;
 import api_adocao.Exceptions.EntidadeNaoEncontradaException;
 import api_adocao.Model.Raca;
 import api_adocao.Repository.RacaRepository;
+import api_adocao.Util.Mapper.RacaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,8 @@ public class RacaService {
     @Autowired
     private RacaRepository racaRepository;
 
-    public List<Raca> listarTodasRacas() {
-        return racaRepository.findAll();
-    }
+    private RacaMapper racaMapper = new RacaMapper();
+
 
     public Raca buscarRacaPorId(Long id) {
         return racaRepository.findById(id)
@@ -24,6 +24,8 @@ public class RacaService {
     }
 
     public Raca criarRaca(Raca raca) {
+        Long maxId = racaRepository.findMaxId();
+        raca.setId(maxId + 1);
         return racaRepository.save(raca);
     }
 
