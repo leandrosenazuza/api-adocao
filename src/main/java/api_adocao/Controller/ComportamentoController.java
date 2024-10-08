@@ -29,7 +29,7 @@ public class ComportamentoController {
     @GetMapping("/get/{id}")
     public ResponseEntity<Comportamento> buscarComportamenPorById(@PathVariable Long id) {
         try {
-            Comportamento comportamento = comportamentoService.buscarComportamentoById(id);
+            Comportamento comportamento = comportamentoService.buscarComportamentoPorId(id);
             return ResponseEntity.ok(comportamento);
         } catch (EntidadeNaoEncontradaException e) {
             return ResponseEntity.notFound().build();
@@ -43,12 +43,13 @@ public class ComportamentoController {
     }
 
     @PutMapping("/put/{id}")
-    public Comportamento updateComportamento(@PathVariable Long id, @RequestBody Comportamento comportamento) {
-        return comportamentoService.updateComportamento(id, comportamento);
+    public ResponseEntity<Comportamento> atualizarComportamento(@PathVariable Long id, @RequestBody ComportamentoDTO comportamentoDTO) {
+        Comportamento comportamentoAtualizado = comportamentoService.atualizarComportamento(id, comportamentoMapper.toEntity(comportamentoDTO));
+        return ResponseEntity.ok(comportamentoAtualizado);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteComportamento(@PathVariable Long id) {
-        comportamentoService.deleteComportamento(id);
+    @DeleteMapping("/delete/{id}")
+    public void deletarComportamento(@PathVariable Long id) {
+        comportamentoService.deletarComportamento(id);
     }
 }
