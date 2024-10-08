@@ -37,4 +37,7 @@ public class UsuarioService {
     public void deleteUsuario(Long id) {
         usuarioRepository.deleteById(id);
     }
+
+    public void login(Usuario usuario) {
+    }
 }

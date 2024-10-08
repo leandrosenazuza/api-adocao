@@ -20,6 +20,14 @@ public class UsuarioController {
 
     private UsuarioMapper usuarioMapper = new UsuarioMapper();
 
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
+        usuarioService.login(usuario);
+        return ResponseEntity.ok("Sucesso");
+    }
+
+
     @PostMapping
     public ResponseEntity<UsuarioDTO> createUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         Usuario usuario = usuarioMapper.toEntity(usuarioDTO);

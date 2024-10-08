@@ -85,3 +85,24 @@ VALUES ('Max', 3.0, 2, 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brinc
 -- Inserindo um gato Siamês de porte pequeno e espécie felina
 INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Mimi', 2.0, 3, 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'https://midias.correiobraziliense.com.br/_midias/jpg/2024/01/31/675x450/1_sgrg-34614010.jpg?20240203041551?20240203041551');
+
+
+
+---- USUARIO
+
+CREATE TABLE Usuario (
+                         id BIGSERIAL PRIMARY KEY,
+                         nome_porte VARCHAR(255) NOT NULL,
+                         email VARCHAR(255),
+                         usario_sistema VARCHAR(255),
+                         senha VARCHAR(255),
+                         isAdministrador BOOLEAN,
+                         isDoador BOOLEAN,
+                         isAdotador BOOLEAN
+);
+
+INSERT INTO Usuario (nome_porte, email, usario_sistema, senha, isAdministrador, isDoador, isAdotador)
+VALUES ('Leandro Zuza', 'leandrosenazuza@gmail.com', 'adm', 'adm', TRUE, FALSE, TRUE);
+
+INSERT INTO Usuario (nome_porte, email, usario_sistema, senha, isAdministrador, isDoador, isAdotador)
+VALUES ('Maria Souza', 'maria.souza@example.com', 'mariasouza', 'senha456', FALSE, TRUE, FALSE);
