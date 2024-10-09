@@ -54,9 +54,9 @@ CREATE TABLE cirurgia (
 );
 
 -- Inserções na tabela 'cirurgia'
-INSERT INTO cirurgia (id, descricao_cirurgia) VALUES (1, 'Castração');
-INSERT INTO cirurgia (id, descricao_cirurgia) VALUES (2, 'Retirada de Tumor');
-INSERT INTO cirurgia (id, descricao_cirurgia) VALUES (3, 'Amputação');
+INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Castração');
+INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Retirada de Tumor');
+INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Amputação');
 
 -- Criação da tabela 'animal'
 CREATE TABLE animal (

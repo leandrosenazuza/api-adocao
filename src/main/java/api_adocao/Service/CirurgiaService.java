@@ -1,7 +1,9 @@
 package api_adocao.Service;
 
+import api_adocao.Exceptions.EntidadeNaoEncontradaException;
 import api_adocao.Model.Cirurgia;
 import api_adocao.Repository.CirurgiaRepository;
+import api_adocao.Util.Mapper.CirurgiaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,33 +14,31 @@ public class CirurgiaService {
     @Autowired
     private CirurgiaRepository cirurgiaRepository;
 
-    public List<Cirurgia> getAllCirurgias() {
+    private CirurgiaMapper cirurgiaMapper = new CirurgiaMapper();
+
+    public List<Cirurgia> getAllCirurgia() {
         return cirurgiaRepository.findAll();
     }
 
-    public Cirurgia getCirurgiaById(Long id) {
+    public Cirurgia buscarCirurgiaPorId(Long id) {
         return cirurgiaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cirurgia não encontrado!"));
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("Cirurgia não encontrada com o ID " + id));
     }
 
-    public Cirurgia createCirurgia(Cirurgia cirurgia) {
+    public Cirurgia criarCirurgia(Cirurgia cirurgia) {
+        Long maxId = cirurgiaRepository.findMaxId();
+        cirurgia.setId(maxId + 1);
         return cirurgiaRepository.save(cirurgia);
     }
 
-    public Cirurgia updateCirurgia(Long id, Cirurgia cirurgia) {
-        if (cirurgiaRepository.existsById(id)) {
-            cirurgia.setId(id);
-            return cirurgiaRepository.save(cirurgia);
-        } else {
-            throw new RuntimeException("Cirurgia não encontrado!");
-        }
+    public Cirurgia atualizarCirurgia(Long id, Cirurgia cirurgiaAtualizada) {
+        Cirurgia cirurgiaExistente = buscarCirurgiaPorId(id);
+        cirurgiaExistente.setDescricaoCirurgia(cirurgiaAtualizada.getDescricaoCirurgia());
+        return cirurgiaRepository.save(cirurgiaExistente);
     }
 
-    public void deleteCirurgia(Long id) {
-        if (cirurgiaRepository.existsById(id)) {
-            cirurgiaRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Cirurgia não encontrada!");
-        }
+    public void deletarCirurgia(Long id) {
+        Cirurgia cirurgia = buscarCirurgiaPorId(id);
+        cirurgiaRepository.delete(cirurgia);
     }
 }

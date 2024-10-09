@@ -1,10 +1,13 @@
 package api_adocao.Controller;
 
+import api_adocao.Exceptions.EntidadeNaoEncontradaException;
 import api_adocao.Model.Cirurgia;
 import api_adocao.Model.DTO.CirurgiaDTO;
 import api_adocao.Service.CirurgiaService;
 import api_adocao.Util.Mapper.CirurgiaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,28 +20,35 @@ public class CirurgiaController {
 
     private CirurgiaMapper cirurgiaMapper = new CirurgiaMapper();
 
-    @GetMapping("/all")
-    public List<Cirurgia> getAllCirurgias() {
-        return cirurgiaService.getAllCirurgias();
+    @GetMapping("/get/all")
+    public List<Cirurgia> getAllAnimals() {
+        return cirurgiaService.getAllCirurgia();
     }
 
-    @GetMapping("/{id}")
-    public Cirurgia getCirurgiaById(@PathVariable Long id) {
-        return cirurgiaService.getCirurgiaById(id);
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Cirurgia> buscarCirurgiaPorId(@PathVariable Long id) {
+        try {
+            Cirurgia cirurgia = cirurgiaService.buscarCirurgiaPorId(id);
+            return ResponseEntity.ok(cirurgia);
+        } catch (EntidadeNaoEncontradaException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @PostMapping
-    public Cirurgia createCirurgia(@RequestBody CirurgiaDTO cirurgiaDTO) {
-        return cirurgiaService.createCirurgia(cirurgiaMapper.toEntity(cirurgiaDTO));
+    @PostMapping("/criar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Cirurgia criarCirurgia(@RequestBody CirurgiaDTO cirurgiaDTO) {
+        return cirurgiaService.criarCirurgia(cirurgiaMapper.toEntity(cirurgiaDTO));
     }
 
-    @PutMapping("/{id}")
-    public Cirurgia updateCirurgia(@PathVariable Long id, @RequestBody Cirurgia cirurgia) {
-        return cirurgiaService.updateCirurgia(id, cirurgia);
+    @PutMapping("/put/{id}")
+    public ResponseEntity<Cirurgia> atualizarCirurgia(@PathVariable Long id, @RequestBody CirurgiaDTO cirurgiaDTO) {
+        Cirurgia cirurgiaAtualizada = cirurgiaService.atualizarCirurgia(id, cirurgiaMapper.toEntity(cirurgiaDTO));
+        return ResponseEntity.ok(cirurgiaAtualizada);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteCirurgia(@PathVariable Long id) {
-        cirurgiaService.deleteCirurgia(id);
+    @DeleteMapping("/delete/{id}")
+    public void deletarCirurgia(@PathVariable Long id) {
+        cirurgiaService.deletarCirurgia(id);
     }
 }
