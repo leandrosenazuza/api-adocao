@@ -16,10 +16,16 @@ import java.util.List;
 @RequestMapping("/raca")
 public class RacaController {
 
-    @Autowired
-    private RacaService racaService;
+    private final RacaService racaService;
+    private final RacaMapper racaMapper;
 
-    private RacaMapper racaMapper = new RacaMapper();
+    @Autowired
+    public RacaController(RacaService racaService, RacaMapper racaMapper) {
+        this.racaService = racaService;
+        this.racaMapper = racaMapper;
+    }
+
+    //private RacaMapper racaMapper = new RacaMapper();
 
     @GetMapping("/get/all")
     public List<Raca> getAllAnimals() {
