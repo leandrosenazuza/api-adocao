@@ -1,6 +1,7 @@
 package api_adocao.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,13 +13,15 @@ import lombok.NoArgsConstructor;
 public class Animal {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @NotBlank
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @NotBlank
     @Column(name = "idade", nullable = false)
     private double idade;
 
