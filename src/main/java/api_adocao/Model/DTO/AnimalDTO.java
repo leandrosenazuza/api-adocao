@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Data
 public class AnimalDTO {
+    private Long id;
     private String nome;
     private double idade;
     private Long racaId;
