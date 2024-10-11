@@ -58,7 +58,13 @@ public class AnimalService {
         animalExistente.setCastrado(animalDTO.isCastrado());
         animalExistente.setVermifugado(animalDTO.isVermifugado());
         animalExistente.setVacinado(animalDTO.isVacinado());
-        animalExistente.setCirurgia(animalDTO.isCirurgia());
+        if(animalDTO.getCirurgiaId() != null) {
+            Cirurgia novaCirurgia = cirurgiaRepository.findById(animalDTO.getCirurgiaId())
+                    .orElseThrow(() -> new EntidadeNaoEncontradaException("Cirurgia não encontrada!"));
+            animalExistente.setCirurgia(novaCirurgia);
+        } else {
+            animalExistente.setCirurgia(null);
+        }
         animalExistente.setDescricaoAnimal(animalDTO.getDescricaoAnimal());
         animalExistente.setFoto(animalDTO.getFoto());
 

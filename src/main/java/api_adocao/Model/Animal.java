@@ -2,8 +2,10 @@ package api_adocao.Model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -21,7 +23,7 @@ public class Animal {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @NotBlank
+    @NotNull
     @Column(name = "idade", nullable = false)
     private double idade;
 
