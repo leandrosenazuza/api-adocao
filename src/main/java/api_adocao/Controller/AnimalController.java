@@ -1,8 +1,13 @@
 package api_adocao.Controller;
 
 import api_adocao.Model.Animal;
+import api_adocao.Model.DTO.AnimalDTO;
 import api_adocao.Service.AnimalService;
+import api_adocao.Util.Mapper.AnimalMapper;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,30 +18,44 @@ import java.util.List;
 public class AnimalController {
 
     @Autowired
-    private AnimalService animalService;
+    private final AnimalService animalService;
+    private final AnimalMapper animalMapper;
 
-    @GetMapping("/all")
+    @Autowired
+    public AnimalController(AnimalService animalService, AnimalMapper animalMapper) {
+        this.animalService = animalService;
+        this.animalMapper = animalMapper;
+    }
+
+    @GetMapping("/get/all")
     public List<Animal> getAllAnimals() {
-        return animalService.getAllAnimals();
+        return animalService.getAllAnimal();
     }
 
-    @GetMapping("/{id}")
-    public Animal getAnimalById(@PathVariable Long id) {
-        return animalService.getAnimalById(id);
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Animal> buscarAnimalPorId(@PathVariable Long id) {
+        try {
+            Animal animal = animalService.buscarAnimalPorId(id);
+            return ResponseEntity.ok(animal);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @PostMapping
-    public Animal createAnimal(@RequestBody Animal animal) {
-        return animalService.createAnimal(animal);
+    @PostMapping("/criar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Animal criarAnimal(@RequestBody AnimalDTO animalDTO) {
+        return animalService.criarAnimal(animalDTO);
     }
 
-    @PutMapping("/{id}")
-    public Animal updateAnimal(@PathVariable Long id, @RequestBody Animal animal) {
-        return animalService.updateAnimal(id, animal);
+    @PutMapping("/put/{id}")
+    public ResponseEntity<Animal>  atualizarAnimal(@PathVariable Long id, @RequestBody AnimalDTO animalDTO) {
+        Animal animalAtualizado = animalService.atualizarAnimal(id, animalDTO);
+        return ResponseEntity.ok(animalAtualizado);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteAnimal(@PathVariable Long id) {
-        animalService.deleteAnimal(id);
+    @DeleteMapping("/delete/{id}")
+    public void deletarAnimal(@PathVariable Long id) {
+        animalService.deletarAnimal(id);
     }
 }

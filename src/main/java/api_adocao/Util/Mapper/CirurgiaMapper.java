@@ -18,6 +18,7 @@ public class CirurgiaMapper {
         if(cirurgiaDTO != null) {
             Cirurgia cirurgia = new Cirurgia();
             cirurgia.setDescricaoCirurgia(cirurgiaDTO.getDescricaoCirurgia());
+            return cirurgia;
         }
         return null;
     }

@@ -5,9 +5,9 @@ CREATE TABLE especie (
 );
 
 -- Inserções na tabela 'especie'
-INSERT INTO especie (id, descricao_especie) VALUES (1, 'Gato');
-INSERT INTO especie (id, descricao_especie) VALUES (2, 'Cachorro');
-INSERT INTO especie (id, descricao_especie) VALUES (3, 'Pássaro');
+INSERT INTO especie (descricao_especie) VALUES ('Gato');
+INSERT INTO especie (descricao_especie) VALUES ('Cachorro');
+INSERT INTO especie (descricao_especie) VALUES ('Pássaro');
 
 -- Criação da tabela 'porte'
 CREATE TABLE porte (
@@ -16,9 +16,9 @@ CREATE TABLE porte (
 );
 
 -- Inserções na tabela 'porte'
-INSERT INTO porte (id, descricao_porte) VALUES (1, 'Pequeno');
-INSERT INTO porte (id, descricao_porte) VALUES (2, 'Médio');
-INSERT INTO porte (id, descricao_porte) VALUES (3, 'Grande');
+INSERT INTO porte (descricao_porte) VALUES ('Pequeno');
+INSERT INTO porte (descricao_porte) VALUES ('Médio');
+INSERT INTO porte (descricao_porte) VALUES ('Grande');
 
 -- Criação da tabela 'raca' (agora relacionando-se com porte e especie)
 CREATE TABLE raca (
@@ -43,9 +43,9 @@ CREATE TABLE comportamento (
 );
 
 -- Inserções na tabela 'comportamento'
-INSERT INTO comportamento (id, descricao_comportamento) VALUES (1, 'Calmo');
-INSERT INTO comportamento (id, descricao_comportamento) VALUES (2, 'Agitado');
-INSERT INTO comportamento (id, descricao_comportamento) VALUES (3, 'Brincalhão');
+INSERT INTO comportamento (descricao_comportamento) VALUES ('Calmo');
+INSERT INTO comportamento (descricao_comportamento) VALUES ('Agitado');
+INSERT INTO comportamento (descricao_comportamento) VALUES ('Brincalhão');
 
 -- Criação da tabela 'cirurgia'
 CREATE TABLE cirurgia (
@@ -54,9 +54,9 @@ CREATE TABLE cirurgia (
 );
 
 -- Inserções na tabela 'cirurgia'
-INSERT INTO cirurgia (id, descricao_cirurgia) VALUES (1, 'Castração');
-INSERT INTO cirurgia (id, descricao_cirurgia) VALUES (2, 'Retirada de Tumor');
-INSERT INTO cirurgia (id, descricao_cirurgia) VALUES (3, 'Amputação');
+INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Castração');
+INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Retirada de Tumor');
+INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Amputação');
 
 -- Criação da tabela 'animal'
 CREATE TABLE animal (
