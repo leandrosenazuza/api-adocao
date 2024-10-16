@@ -37,8 +37,8 @@ public class RacaService {
     }
 
     public Raca criarRaca(Raca raca) {
-        Long maxId = racaRepository.findMaxId();
-        raca.setId(maxId + 1);
+        //Long maxId = racaRepository.findMaxId();
+       // raca.setId(maxId + 1);
         return racaRepository.save(raca);
     }
 
