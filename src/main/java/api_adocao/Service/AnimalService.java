@@ -42,6 +42,10 @@ public class AnimalService {
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Animal não encontrado com ID: " + id));
     }
 
+    public List<Animal> buscarAnimaisPorEspecie(Long especieId) {
+        return animalRepository.findByRacaEspecieId(especieId);
+    }
+
     public Animal criarAnimal(AnimalDTO animalDTO) {
         Animal animal = animalMapper.toEntity(animalDTO);
         return animalRepository.save(animal);

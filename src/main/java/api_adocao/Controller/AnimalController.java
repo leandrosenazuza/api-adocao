@@ -42,6 +42,16 @@ public class AnimalController {
         }
     }
 
+    @GetMapping("/get/especie/{especieId}")
+    public ResponseEntity<List<Animal>> buscarAnimalPorEspecie(@PathVariable Long especieId) {
+        try {
+            List<Animal> animais = animalService.buscarAnimaisPorEspecie(especieId);
+            return ResponseEntity.ok(animais);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
     public Animal criarAnimal(@RequestBody AnimalDTO animalDTO) {

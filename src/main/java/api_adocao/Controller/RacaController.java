@@ -44,9 +44,9 @@ public class RacaController {
 
     @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Raca criarRaca(@RequestBody RacaDTO racaDTO) {
+    public Raca criarRaca(@RequestBody Raca raca) {
 
-        return racaService.criarRaca(racaMapper.toEntity(racaDTO));
+        return racaService.criarRaca(raca);
     }
 
     @PutMapping("/put/{id}")
