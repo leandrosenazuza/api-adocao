@@ -74,6 +74,18 @@ CREATE TABLE animal (
                         foto TEXT
 );
 
+CREATE TABLE usuario (
+                         id BIGSERIAL PRIMARY KEY,
+                         nome VARCHAR(100),
+                         email VARCHAR(100),
+                         usuario_sistema VARCHAR(100),
+                         senha VARCHAR(100)
+);
+
+INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Leandro Zuza', 'leandrosenazuza@gmail.com', 'zuza', '123');
+INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Thiago', 'thiago@gmail.com', 'thiago', '123');
+INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Wilson', 'will@gmail.com', 'will', '123');
+
 -- Inserindo um Labrador de porte grande e espécie canina
 INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Rex', 5.0, 1, 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
