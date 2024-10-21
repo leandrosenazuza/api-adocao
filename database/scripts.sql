@@ -20,7 +20,7 @@ INSERT INTO porte (descricao_porte) VALUES ('Pequeno');
 INSERT INTO porte (descricao_porte) VALUES ('Médio');
 INSERT INTO porte (descricao_porte) VALUES ('Grande');
 
--- Criação da tabela 'raca' (agora relacionando-se com porte e especie)
+-- Criação da tabela 'raca'
 CREATE TABLE raca (
                       id BIGSERIAL PRIMARY KEY,
                       descricao_raca VARCHAR(255) NOT NULL,
@@ -29,11 +29,8 @@ CREATE TABLE raca (
 );
 
 -- Inserções na tabela 'raca'
--- Labrador é um cão de porte grande
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Labrador', 3, 2);
--- Poodle é um cão de porte médio
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Poodle', 2, 2);
--- Siamês é um gato de porte pequeno
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Siamês', 1, 1);
 
 -- Criação da tabela 'comportamento'
@@ -71,17 +68,16 @@ CREATE TABLE animal (
                         is_vacinado BOOLEAN NOT NULL,
                         is_cirurgia BOOLEAN NOT NULL,
                         descricao_animal TEXT,
-                        foto TEXT
+                        foto TEXT,
+                        sexo VARCHAR(255) NOT NULL -- Adicionada a coluna sexo
 );
 
--- Inserindo um Labrador de porte grande e espécie canina
-INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Rex', 5.0, 1, 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
+-- Inserções na tabela 'animal' (com sexo)
+INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto, sexo)
+VALUES ('Rex', 5.0, 1, 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg', 'Macho');
 
--- Inserindo um Poodle de porte médio e espécie canina
-INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Max', 3.0, 2, 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brincalhão', 'https://i0.statig.com.br/bancodeimagens/78/pt/gs/78ptgsfeddfh638dkkzya5p3y.jpg');
+INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto, sexo)
+VALUES ('Max', 3.0, 2, 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brincalhão', 'https://i0.statig.com.br/bancodeimagens/78/pt/gs/78ptgsfeddfh638dkkzya5p3y.jpg', 'Macho');
 
--- Inserindo um gato Siamês de porte pequeno e espécie felina
-INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Mimi', 2.0, 3, 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'https://midias.correiobraziliense.com.br/_midias/jpg/2024/01/31/675x450/1_sgrg-34614010.jpg?20240203041551?20240203041551');
+INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto, sexo)
+VALUES ('Mimi', 2.0, 3, 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'https://midias.correiobraziliense.com.br/_midias/jpg/2024/01/31/675x450/1_sgrg-34614010.jpg?20240203041551?20240203041551', 'Fêmea');

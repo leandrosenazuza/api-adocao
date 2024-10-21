@@ -11,6 +11,7 @@ public class AnimalDTO {
     private String nome;
     private double idade;
     private Long racaId;
+    private String sexo;
     private Long comportamentoId;
     private Long cirurgiaId;
     private boolean isCastrado;

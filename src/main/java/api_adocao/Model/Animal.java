@@ -31,6 +31,9 @@ public class Animal {
     @JoinColumn(name = "raca_id", nullable = false)
     private Raca raca;
 
+    @Column(name = "sexo", nullable = false)
+    private String sexo;
+
     @ManyToOne
     @JoinColumn(name = "comportamento_id", nullable = false)
     private Comportamento comportamento;
@@ -56,4 +59,5 @@ public class Animal {
 
     @Column(name = "foto")
     private String foto;
+
 }
