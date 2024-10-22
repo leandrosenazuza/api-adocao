@@ -2,7 +2,10 @@ package api_adocao.Controller;
 
 import api_adocao.Exceptions.EntidadeNaoEncontradaException;
 import api_adocao.Model.DTO.RacaDTO;
+import api_adocao.Model.Especie;
+import api_adocao.Model.Porte;
 import api_adocao.Model.Raca;
+import api_adocao.Repository.EspecieRepository;
 import api_adocao.Service.RacaService;
 import api_adocao.Util.Mapper.RacaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +21,13 @@ public class RacaController {
 
     private final RacaService racaService;
     private final RacaMapper racaMapper;
+    private final EspecieRepository especieRepository;
 
     @Autowired
-    public RacaController(RacaService racaService, RacaMapper racaMapper) {
+    public RacaController(RacaService racaService, RacaMapper racaMapper, EspecieRepository especieRepository) {
         this.racaService = racaService;
         this.racaMapper = racaMapper;
+        this.especieRepository = especieRepository;
     }
 
     //private RacaMapper racaMapper = new RacaMapper();
@@ -50,6 +55,17 @@ public class RacaController {
     @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
     public Raca criarRaca(@RequestBody Raca raca) {
+        // Cria uma instância de Porte e define o ID
+        Porte porte = new Porte();
+        porte.setId(raca.getPorte().getId()); // Define o ID do Porte
+
+        // Busca a Especie a partir do ID recebido
+        Especie especie = especieRepository.findById(raca.getEspecie().getId())
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("Espécie não encontrada!"));
+
+        // Associa a Especie e o Porte à Raca
+        raca.setEspecie(especie);
+        raca.setPorte(porte); // Associa o objeto Porte à raça
 
         return racaService.criarRaca(raca);
     }
