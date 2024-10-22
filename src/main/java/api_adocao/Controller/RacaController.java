@@ -42,6 +42,11 @@ public class RacaController {
         }
     }
 
+    @GetMapping("/get/especie/{especieId}")
+    public List<Raca> buscarRacasPorEspecie(@PathVariable Long especieId) {
+        return racaService.buscarRacasPorEspecie(especieId);
+    }
+
     @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
     public Raca criarRaca(@RequestBody Raca raca) {

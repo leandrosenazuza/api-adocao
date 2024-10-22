@@ -66,4 +66,8 @@ public class RacaService {
     public List<Raca> getAllRaca() {
         return racaRepository.findAll();
     }
+
+    public List<Raca> buscarRacasPorEspecie(Long especieId) {
+        return racaRepository.findByEspecieId(especieId);
+    }
 }
