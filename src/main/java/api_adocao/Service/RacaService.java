@@ -8,6 +8,7 @@ import api_adocao.Repository.EspecieRepository;
 import api_adocao.Repository.PorteRepository;
 import api_adocao.Repository.RacaRepository;
 import api_adocao.Util.Mapper.RacaMapper;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ import java.util.List;
 @Service
 public class RacaService {
 
+    public List<Raca> buscarRacasPorEspecie(Long especieId) {
+        return racaRepository.findByEspecieId(especieId);
+    }
     @Autowired
     private RacaRepository racaRepository;
 
