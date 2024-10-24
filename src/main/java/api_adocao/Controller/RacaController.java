@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -77,8 +78,13 @@ public class RacaController {
                // .orElseThrow(() -> new EntidadeNaoEncontradaException("Espécie não encontrada!"));
 
         // Associa a Especie e o Porte à Raca
+        //raca.setEspecie(especie);
+       // raca.setPorte(porte); // Associa o objeto Porte à raça
+
+        // Cria uma instancia de Raca e define os atributos
+        raca.setDescricaoRaca(racaDTO.getDescricaoRaca());
         raca.setEspecie(especie);
-        raca.setPorte(porte); // Associa o objeto Porte à raça
+        raca.setPorte(porte);
 
         return racaService.criarRaca(raca);
     }
@@ -97,8 +103,8 @@ public class RacaController {
     @GetMapping("/get/especie/{especieId}")
     public ResponseEntity<List<Raca>> buscarRacasPorEspecie(@PathVariable Long especieId) {
         List<Raca> racas  = racaService.buscarRacasPorEspecie(especieId);
-        if (racas.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        if (racas == null) {
+            racas = new ArrayList<>();
         }
         return ResponseEntity.ok(racas);
     }
