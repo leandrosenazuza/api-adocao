@@ -50,12 +50,12 @@ public class RacaController {
             return ResponseEntity.notFound().build();
         }
     }
-
+/*
     @GetMapping("/get/especie/{especieId}")
     public List<Raca> buscarRacasPorEspecie(@PathVariable Long especieId) {
         return racaService.buscarRacasPorEspecie(especieId);
     }
-
+*/
     @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
     public Raca criarRaca(@RequestBody RacaDTO racaDTO) {
@@ -82,7 +82,7 @@ public class RacaController {
        // raca.setPorte(porte); // Associa o objeto Porte à raça
 
         // Cria uma instancia de Raca e define os atributos
-        raca.setDescricaoRaca(racaDTO.getDescricaoRaca());
+       // raca.setDescricaoRaca(racaDTO.getDescricaoRaca());
         raca.setEspecie(especie);
         raca.setPorte(porte);
 
