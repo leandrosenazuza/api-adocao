@@ -17,9 +17,9 @@ import java.util.List;
 @Service
 public class RacaService {
 
-    public List<Raca> buscarRacasPorEspecie(Long especieId) {
+   /* public List<Raca> buscarRacasPorEspecie(Long especieId) {
         return racaRepository.findByEspecieId(especieId);
-    }
+    }*/
     @Autowired
     private RacaRepository racaRepository;
 
