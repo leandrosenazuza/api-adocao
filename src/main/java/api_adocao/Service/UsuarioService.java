@@ -1,5 +1,6 @@
 package api_adocao.Service;
 
+import api_adocao.Model.Request.RequestLogin;
 import api_adocao.Model.Usuario;
 import api_adocao.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,10 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    public void login(Usuario usuario) {
+    public boolean login(RequestLogin requestLogin) {
+        Usuario usuario = usuarioRepository.buscarPorUsuario(requestLogin.getUsarioSistema());
+        if(requestLogin.getSenha().equals(usuario.getSenha())) {
+            return true;
+        } else return false;
     }
 }
