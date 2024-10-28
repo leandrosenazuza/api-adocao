@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EspecieRepository extends JpaRepository<Especie, Long> {
 
-    @Query("SELECT COALESCE(MAX(e.id), 0) FROM Especie e")
-    Long findMaxId();
+    //@Query("SELECT COALESCE(MAX(e.id), 0) FROM Especie e")
+    //Long findMaxId();
 }

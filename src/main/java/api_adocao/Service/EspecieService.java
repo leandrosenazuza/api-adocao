@@ -25,8 +25,8 @@ public class EspecieService {
     }
 
     public Especie criarEspecie(Especie especie) {
-        Long maxId = especieRepository.findMaxId();
-        especie.setId(maxId + 1);
+        //Long maxId = especieRepository.findMaxId();
+       // especie.setId(maxId + 1);
         return especieRepository.save(especie);
     }
 

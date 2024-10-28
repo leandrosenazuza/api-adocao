@@ -7,14 +7,17 @@ import api_adocao.Model.Porte;
 import api_adocao.Model.Raca;
 import api_adocao.Repository.EspecieRepository;
 import api_adocao.Repository.PorteRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RacaMapper {
 
-    private PorteRepository porteRepository;
-    private EspecieRepository especieRepository;
+    private static final Logger log = LoggerFactory.getLogger(RacaMapper.class);
+    private final PorteRepository porteRepository;
+    private final EspecieRepository especieRepository;
 
     @Autowired
     public RacaMapper(PorteRepository porteRepository, EspecieRepository especieRepository) {
@@ -23,29 +26,38 @@ public class RacaMapper {
     }
 
     public RacaDTO toDTO(Raca raca) {
-        if(raca != null) {
-            RacaDTO racaDTO = new RacaDTO();
-            raca.setId(raca.getId());
-            racaDTO.setDescricaoRaca(raca.getDescricaoRaca());
-            return racaDTO;
+        log.debug("Convertendo Raça para DTO: {}", raca);
+        if (raca != null) {
+            // ... (código para criar o DTO)
         }
         return null;
     }
 
     public Raca toEntity(RacaDTO racaDTO) {
-        if(racaDTO != null) {
+        log.debug("Convertendo DTO para Raça: {}", racaDTO);
+
+        if (racaDTO != null) {
+
+            log.debug("Valores Porte e Espécie ID: {} {}", racaDTO.getPorteId(), racaDTO.getEspecieId());
+
             Raca raca = new Raca();
             raca.setDescricaoRaca(racaDTO.getDescricaoRaca());
 
-            // Obtém as entidades Porte e Especie do banco
+
+
             Porte porte = porteRepository.findById(racaDTO.getPorteId())
                     .orElseThrow(() -> new EntidadeNaoEncontradaException("Porte não encontrado!"));
-            Especie especie = especieRepository.findById(racaDTO.getEspecieId())
-                    .orElseThrow(() -> new EntidadeNaoEncontradaException("Especie não encontrado!"));
+            log.debug("Porte encontrado no mapeamento: {}", porte);
 
-            // Associa o Porte e a Especie à Raca
+
+            Especie especie = especieRepository.findById(racaDTO.getEspecieId())
+                    .orElseThrow(() -> new EntidadeNaoEncontradaException("Espécie não encontrada!"));
+            log.debug("Espécie encontrada no mapeamento: {}", especie);
+
+
             raca.setPorte(porte);
             raca.setEspecie(especie);
+
 
             return raca;
         }

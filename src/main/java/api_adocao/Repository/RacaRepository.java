@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface RacaRepository extends JpaRepository<Raca, Long> {
 
-    @Query("SELECT COALESCE(MAX (e.id), 0) FROM Raca e")
-    Long findMaxId();
+    //@Query("SELECT COALESCE(MAX (e.id), 0) FROM Raca e")
+    //Long findMaxId();
 
     List<Raca> findByEspecieId(Long especieId);
 }

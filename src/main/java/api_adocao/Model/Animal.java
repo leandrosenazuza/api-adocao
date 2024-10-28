@@ -31,8 +31,10 @@ public class Animal {
     @JoinColumn(name = "raca_id", nullable = false)
     private Raca raca;
 
-    @Column(name = "sexo", nullable = false)
-    private String sexo;
+    @NotNull(message = "O sexo no animal é obrigatório") // Validação para garantir que o sexo seja informado
+    @Enumerated(EnumType.STRING) // Armazena o sexo como uma String no banco
+    @Column(name = "sexo", nullable = false) // O campo não pode ser nulo no banco
+    private Sexo sexo; // usa o enum Sexo como tipo
 
     @ManyToOne
     @JoinColumn(name = "comportamento_id", nullable = false)
