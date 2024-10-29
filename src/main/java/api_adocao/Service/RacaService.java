@@ -46,9 +46,21 @@ public class RacaService {
 
     public Raca atualizarRaca(Long id, Raca racaAtualizada) {
         log.info("Atualizando raça com ID {}: {}", id, racaAtualizada.getDescricaoRaca()); // Log com ID e descrição
-        Raca racaExistente = buscarRacaPorId(id);
-        // ... (código para atualizar os dados da raça)
+        //Raca racaExistente = buscarRacaPorId(id);
+
+        // Busca a raça existente pelo ID
+        Raca racaExistente = racaRepository.findById(id)
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("Raça não encontrada com ID: " + id));
+
+        // Atualiza os atributos da raça existente com os valores da raça recebida
+        racaExistente.setDescricaoRaca(racaAtualizada.getDescricaoRaca());
+        racaExistente.setEspecie(racaAtualizada.getEspecie());
+        racaExistente.setPorte(racaAtualizada.getPorte());
+
+        // Salva a raça atualizada no banco de dados
         return racaRepository.save(racaExistente);
+
+
     }
 
 
