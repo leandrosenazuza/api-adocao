@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CirurgiaRepository extends JpaRepository<Cirurgia, Long> {
 
-    @Query("SELECT COALESCE(MAX(e.id), 0) FROM Cirurgia e")
-    Long findMaxId();
+    //@Query("SELECT COALESCE(MAX(e.id), 0) FROM Cirurgia e")
+    //Long findMaxId();
 }

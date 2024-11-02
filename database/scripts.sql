@@ -20,7 +20,7 @@ INSERT INTO porte (descricao_porte) VALUES ('Pequeno');
 INSERT INTO porte (descricao_porte) VALUES ('Médio');
 INSERT INTO porte (descricao_porte) VALUES ('Grande');
 
--- Criação da tabela 'raca' (agora relacionando-se com porte e especie)
+-- Criação da tabela 'raca'
 CREATE TABLE raca (
                       id BIGSERIAL PRIMARY KEY,
                       descricao_raca VARCHAR(255) NOT NULL,
@@ -29,12 +29,15 @@ CREATE TABLE raca (
 );
 
 -- Inserções na tabela 'raca'
--- Labrador é um cão de porte grande
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Labrador', 3, 2);
--- Poodle é um cão de porte médio
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Poodle', 2, 2);
--- Siamês é um gato de porte pequeno
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Siamês', 1, 1);
+INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Persa', 1, 1);
+INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Vira-lata', 1, 1);
+INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('SRD', 2, 2);
+INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Pastor Alemão', 3, 2);
+INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Golden Retriever', 3, 2);
+
 
 -- Criação da tabela 'comportamento'
 CREATE TABLE comportamento (
@@ -46,6 +49,9 @@ CREATE TABLE comportamento (
 INSERT INTO comportamento (descricao_comportamento) VALUES ('Calmo');
 INSERT INTO comportamento (descricao_comportamento) VALUES ('Agitado');
 INSERT INTO comportamento (descricao_comportamento) VALUES ('Brincalhão');
+INSERT INTO comportamento (descricao_comportamento) VALUES ('Tímido');
+INSERT INTO comportamento (descricao_comportamento) VALUES ('Dengoso');
+INSERT INTO comportamento (descricao_comportamento) VALUES ('Amoroso');
 
 -- Criação da tabela 'cirurgia'
 CREATE TABLE cirurgia (
@@ -57,23 +63,30 @@ CREATE TABLE cirurgia (
 INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Castração');
 INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Retirada de Tumor');
 INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Amputação');
+INSERT INTO cirurgia (descricao_cirurgia) VALUES ('sem cirurgia');
 
--- Criação da tabela 'animal'
+
+-- Criação da tabela 'animal' (com sexo como VARCHAR e restrição CHECK)
 CREATE TABLE animal (
                         id BIGSERIAL PRIMARY KEY,
                         nome VARCHAR(255) NOT NULL,
                         idade DOUBLE PRECISION NOT NULL,
                         raca_id BIGINT REFERENCES raca(id) ON DELETE SET NULL,
+                        sexo VARCHAR(255) NOT NULL,  -- sexo agora é enum
                         comportamento_id BIGINT REFERENCES comportamento(id) ON DELETE SET NULL,
                         cirurgia_id BIGINT REFERENCES cirurgia(id) ON DELETE SET NULL,
                         is_castrado BOOLEAN NOT NULL,
                         is_vermifugado BOOLEAN NOT NULL,
                         is_vacinado BOOLEAN NOT NULL,
-                        is_cirurgia BOOLEAN NOT NULL,
+                        is_cirurgia BOOLEAN NOT NULL,  -- indica se teve cirurgia
                         descricao_animal TEXT,
-                        foto TEXT
+                        foto TEXT,
+                        CONSTRAINT sexo_check CHECK (sexo IN ('MACHO', 'FEMEA', 'DESCONHECIDO')) -- Restrição CHECK para sexo
 );
 
+-- Inserções na tabela 'animal' (com sexo como enum)
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Rex', 5.0, 1, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
 CREATE TABLE usuario (
                          id BIGSERIAL PRIMARY KEY,
                          nome VARCHAR(100),
@@ -90,10 +103,11 @@ INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Wilson', 'wil
 INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Rex', 5.0, 1, 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
 
--- Inserindo um Poodle de porte médio e espécie canina
-INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Max', 3.0, 2, 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brincalhão', 'https://i0.statig.com.br/bancodeimagens/78/pt/gs/78ptgsfeddfh638dkkzya5p3y.jpg');
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Max', 3.0, 2, 'MACHO', 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brincalhão', 'https://i0.statig.com.br/bancodeimagens/78/pt/gs/78ptgsfeddfh638dkkzya5p3y.jpg');
 
--- Inserindo um gato Siamês de porte pequeno e espécie felina
-INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Mimi', 2.0, 3, 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'https://midias.correiobraziliense.com.br/_midias/jpg/2024/01/31/675x450/1_sgrg-34614010.jpg?20240203041551?20240203041551');
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Mimi', 2.0, 3, 'FEMEA', 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'https://midias.correiobraziliense.com.br/_midias/jpg/2024/01/31/675x450/1_sgrg-34614010.jpg?20240203041551?20240203041551');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Luna', 1.5, 4, 'FEMEA', 6, 3, TRUE, TRUE, TRUE, TRUE, 'Cachorrinha dócil e brincalhona', 'URL_PARA_FOTO_AQUI');

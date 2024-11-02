@@ -1,15 +1,14 @@
 package api_adocao.Util.Mapper;
 
 import api_adocao.Exceptions.EntidadeNaoEncontradaException;
-import api_adocao.Model.Animal;
-import api_adocao.Model.Cirurgia;
-import api_adocao.Model.Comportamento;
+import api_adocao.Model.*;
 import api_adocao.Model.DTO.AnimalDTO;
-import api_adocao.Model.Raca;
 import api_adocao.Repository.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class AnimalMapper {
 
@@ -37,6 +36,7 @@ public class AnimalMapper {
             animalDTO.setNome(animal.getNome());
             animalDTO.setIdade(animal.getIdade());
             animalDTO.setRacaId(animal.getRaca().getId());
+            animalDTO.setSexo(animal.getSexo().name()); // Converte o enum para String
             animalDTO.setComportamentoId(animal.getComportamento().getId());
 
             // Verificando se há cirurgia associada
@@ -74,6 +74,15 @@ public class AnimalMapper {
             Raca raca = racaRepository.findById(animalDTO.getRacaId())
                     .orElseThrow(() -> new EntidadeNaoEncontradaException("Raça não encontrada!"));
             animal.setRaca(raca);
+
+            try {
+                Sexo sexoEnum = Sexo.valueOf(animalDTO.getSexo()); // Converte a String para enum Sexo
+                animal.setSexo(sexoEnum);
+            } catch (IllegalArgumentException e) {
+                // Trata a exceção  caso o valor  da string não seja um valor válido do enum
+                log.error("Valor inválido para sexo: {}", animalDTO.getSexo(), e);
+                throw new EntidadeNaoEncontradaException("Valor de sexo inválido");
+            }
 
             Comportamento comportamento = comportamentoRepository.findById(animalDTO.getComportamentoId())
                     .orElseThrow(() -> new EntidadeNaoEncontradaException("Comportamento não encontrado!"));
