@@ -4,10 +4,8 @@ import api_adocao.Exceptions.EntidadeNaoEncontradaException;
 import api_adocao.Model.Porte;
 import api_adocao.Repository.PorteRepository;
 import api_adocao.Util.Mapper.PorteMapper;
-import api_adocao.Model.DTO.PorteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 

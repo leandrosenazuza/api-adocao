@@ -1,8 +1,6 @@
 package api_adocao.Service;
 
 import api_adocao.Exceptions.EntidadeNaoEncontradaException;
-import api_adocao.Model.Especie;
-import api_adocao.Model.Porte;
 import api_adocao.Model.Raca;
 import api_adocao.Repository.EspecieRepository;
 import api_adocao.Repository.PorteRepository;

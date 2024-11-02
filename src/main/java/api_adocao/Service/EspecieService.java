@@ -1,15 +1,13 @@
 package api_adocao.Service;
 
 import api_adocao.Exceptions.EntidadeNaoEncontradaException;
-import api_adocao.Model.DTO.EspecieDTO;
 import api_adocao.Model.Especie;
 import api_adocao.Repository.EspecieRepository;
 import api_adocao.Util.Mapper.EspecieMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
-import org.springframework.dao.DataIntegrityViolationException;
 
 @Service
 public class EspecieService {
