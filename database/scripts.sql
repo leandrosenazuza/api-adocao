@@ -1,6 +1,3 @@
--- Script para popular o banco de dados H2 para a aplicação PataWeb.
--- Inclui a criação das tabelas e inserção de dados de exemplo.
-
 -- Criação da tabela 'especie'
 CREATE TABLE especie (
                          id BIGSERIAL PRIMARY KEY,
@@ -90,6 +87,21 @@ CREATE TABLE animal (
 -- Inserções na tabela 'animal' (com sexo como enum)
 INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Rex', 5.0, 1, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
+CREATE TABLE usuario (
+                         id BIGSERIAL PRIMARY KEY,
+                         nome VARCHAR(100),
+                         email VARCHAR(100),
+                         usuario_sistema VARCHAR(100),
+                         senha VARCHAR(100)
+);
+
+INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Leandro Zuza', 'leandrosenazuza@gmail.com', 'zuza', '123');
+INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Thiago', 'thiago@gmail.com', 'thiago', '123');
+INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Wilson', 'will@gmail.com', 'will', '123');
+
+-- Inserindo um Labrador de porte grande e espécie canina
+INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Rex', 5.0, 1, 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
 
 INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Max', 3.0, 2, 'MACHO', 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brincalhão', 'https://i0.statig.com.br/bancodeimagens/78/pt/gs/78ptgsfeddfh638dkkzya5p3y.jpg');
