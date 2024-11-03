@@ -85,13 +85,14 @@ CREATE TABLE animal (
 );
 
 CREATE TABLE usuario (
--- Inserções na tabela 'animal' (com sexo como enum)
                          id BIGSERIAL PRIMARY KEY,
                          nome VARCHAR(100),
                          email VARCHAR(100),
                          usuario_sistema VARCHAR(100),
                          senha VARCHAR(100)
 );
+
+-- Inserções na tabela 'animal' (com sexo como enum)
 
 INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Leandro Zuza', 'leandrosenazuza@gmail.com', 'zuza', '123');
 INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Thiago', 'thiago@gmail.com', 'thiago', '123');
