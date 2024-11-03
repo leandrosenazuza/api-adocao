@@ -84,10 +84,8 @@ CREATE TABLE animal (
                         CONSTRAINT sexo_check CHECK (sexo IN ('MACHO', 'FEMEA', 'DESCONHECIDO')) -- Restrição CHECK para sexo
 );
 
--- Inserções na tabela 'animal' (com sexo como enum)
-INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Rex', 5.0, 1, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
 CREATE TABLE usuario (
+-- Inserções na tabela 'animal' (com sexo como enum)
                          id BIGSERIAL PRIMARY KEY,
                          nome VARCHAR(100),
                          email VARCHAR(100),
@@ -100,8 +98,8 @@ INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Thiago', 'thi
 INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Wilson', 'will@gmail.com', 'will', '123');
 
 -- Inserindo um Labrador de porte grande e espécie canina
-INSERT INTO animal (nome, idade, raca_id, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Rex', 5.0, 1, 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Rex', 5.0, 1, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
 
 INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Max', 3.0, 2, 'MACHO', 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro agitado e brincalhão', 'https://i0.statig.com.br/bancodeimagens/78/pt/gs/78ptgsfeddfh638dkkzya5p3y.jpg');
@@ -110,4 +108,4 @@ INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, i
 VALUES ('Mimi', 2.0, 3, 'FEMEA', 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinhoso e calmo', 'https://midias.correiobraziliense.com.br/_midias/jpg/2024/01/31/675x450/1_sgrg-34614010.jpg?20240203041551?20240203041551');
 
 INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
-VALUES ('Luna', 1.5, 4, 'FEMEA', 6, 3, TRUE, TRUE, TRUE, TRUE, 'Cachorrinha dócil e brincalhona', 'URL_PARA_FOTO_AQUI');
+VALUES ('Luna', 1.5, 4, 'FEMEA', 6, 3, TRUE, TRUE, TRUE, TRUE, 'Cachorrinha dócil e brincalhona', 'https://f.i.uol.com.br/fotografia/2022/07/14/165785281162d0d38b9f973_1657852811_3x2_rt.jpg');

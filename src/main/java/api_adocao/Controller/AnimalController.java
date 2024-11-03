@@ -2,6 +2,7 @@ package api_adocao.Controller;
 
 import api_adocao.Model.Animal;
 import api_adocao.Model.DTO.AnimalDTO;
+import api_adocao.Model.Response.RetornoNumeroTotalAdocao;
 import api_adocao.Service.AnimalService;
 import api_adocao.Util.Mapper.AnimalMapper;
 import jakarta.persistence.EntityNotFoundException;
@@ -67,5 +68,10 @@ public class AnimalController {
     @DeleteMapping("/delete/{id}")
     public void deletarAnimal(@PathVariable Long id) {
         animalService.deletarAnimal(id);
+    }
+
+    @GetMapping("/animaisAdocao")
+    public ResponseEntity<RetornoNumeroTotalAdocao> getAnimaisAdocao(){
+        return ResponseEntity.ok(animalService.recuperarNumeroAniamisAdocao());
     }
 }

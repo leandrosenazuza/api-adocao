@@ -6,6 +6,7 @@ import api_adocao.Model.Cirurgia;
 import api_adocao.Model.Comportamento;
 import api_adocao.Model.DTO.AnimalDTO;
 import api_adocao.Model.Raca;
+import api_adocao.Model.Response.RetornoNumeroTotalAdocao;
 import api_adocao.Repository.AnimalRepository;
 import api_adocao.Repository.CirurgiaRepository;
 import api_adocao.Repository.ComportamentoRepository;
@@ -107,4 +108,13 @@ public class AnimalService {
         return animalRepository.findAll();
     }
 
+    public RetornoNumeroTotalAdocao recuperarNumeroAniamisAdocao(){
+        try{
+            return new RetornoNumeroTotalAdocao(animalRepository.getNumeroAnimaisEsperandoAdocao());
+        }catch (Error e){
+            System.out.println("Erro ao buscar os animais");
+            e.printStackTrace();
+        }
+        return new RetornoNumeroTotalAdocao(0);
+    }
 }
