@@ -3,15 +3,18 @@ package api_adocao.Service;
 import api_adocao.Exceptions.EntidadeNaoEncontradaException;
 import api_adocao.Model.*;
 import api_adocao.Model.DTO.AnimalDTO;
-import api_adocao.Model.Request.SolicitacaoAdocaoRequest;
+import api_adocao.Model.Request.RequestSolicitacaoAdocao;
 import api_adocao.Model.Response.RetornoNumeroTotalAdocao;
 import api_adocao.Model.Response.RetornoPadrao;
+import api_adocao.Model.Response.RetornoSolicitacao;
 import api_adocao.Repository.*;
 import api_adocao.Util.Mapper.AnimalMapper;
 import api_adocao.Util.Mapper.SolicitacaoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 // Service para gerenciar as operações relacionadas a animais.
@@ -120,16 +123,5 @@ public class AnimalService {
             e.printStackTrace();
         }
         return new RetornoNumeroTotalAdocao(0);
-    }
-
-    public RetornoPadrao solicitarAdocao(SolicitacaoAdocaoRequest request) {
-        Solicitacao solicitacao = solicitacaoMapper.requestToEntity(request);
-        try{
-            solicitacaoRepository.save(solicitacao);
-            return new RetornoPadrao(true, "Solicitação realizada com sucesso!");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
     }
 }

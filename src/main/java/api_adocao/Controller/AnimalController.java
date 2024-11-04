@@ -2,7 +2,7 @@ package api_adocao.Controller;
 
 import api_adocao.Model.Animal;
 import api_adocao.Model.DTO.AnimalDTO;
-import api_adocao.Model.Request.SolicitacaoAdocaoRequest;
+import api_adocao.Model.Request.RequestSolicitacaoAdocao;
 import api_adocao.Model.Response.RetornoNumeroTotalAdocao;
 import api_adocao.Model.Response.RetornoPadrao;
 import api_adocao.Service.AnimalService;
@@ -78,8 +78,5 @@ public class AnimalController {
         return ResponseEntity.ok(animalService.recuperarNumeroAniamisAdocao());
     }
 
-    @PostMapping("/solicitar")
-    public ResponseEntity<RetornoPadrao> solicitarAdocao(SolicitacaoAdocaoRequest request){
-        return ResponseEntity.ok(animalService.solicitarAdocao(request));
-    }
+
 }
