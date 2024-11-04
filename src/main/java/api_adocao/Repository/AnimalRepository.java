@@ -12,5 +12,6 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
     @Query(value = "select count(*) from Animal", nativeQuery = true)
     int getNumeroAnimaisEsperandoAdocao();
+
     List<Animal> findByRacaEspecieId(Long especieId);
 }
