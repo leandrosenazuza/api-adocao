@@ -92,6 +92,14 @@ CREATE TABLE usuario (
                          senha VARCHAR(100)
 );
 
+create TABLE solicitacao(
+                            id BIGSERIAL PRIMARY KEY,
+                            nome_interessado VARCHAR(100) NOT NULL,
+                            email_interessado VARCHAR(100) NOT NULL,
+                            telefone_interessado VARCHAR(100) NOT NULL,
+                            animal_id BIGINT NOT NULL REFERENCES animal(id) ON DELETE RESTRICT
+);
+
 -- Inserções na tabela 'animal' (com sexo como enum)
 
 INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Leandro Zuza', 'leandrosenazuza@gmail.com', 'zuza', '123');

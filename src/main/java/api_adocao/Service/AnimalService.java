@@ -1,17 +1,14 @@
 package api_adocao.Service;
 
 import api_adocao.Exceptions.EntidadeNaoEncontradaException;
-import api_adocao.Model.Animal;
-import api_adocao.Model.Cirurgia;
-import api_adocao.Model.Comportamento;
+import api_adocao.Model.*;
 import api_adocao.Model.DTO.AnimalDTO;
-import api_adocao.Model.Raca;
+import api_adocao.Model.Request.SolicitacaoAdocaoRequest;
 import api_adocao.Model.Response.RetornoNumeroTotalAdocao;
-import api_adocao.Repository.AnimalRepository;
-import api_adocao.Repository.CirurgiaRepository;
-import api_adocao.Repository.ComportamentoRepository;
-import api_adocao.Repository.RacaRepository;
+import api_adocao.Model.Response.RetornoPadrao;
+import api_adocao.Repository.*;
 import api_adocao.Util.Mapper.AnimalMapper;
+import api_adocao.Util.Mapper.SolicitacaoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,13 +25,20 @@ public class AnimalService {
     private AnimalMapper animalMapper;
 
     @Autowired
+    private SolicitacaoMapper solicitacaoMapper;
+
+    @Autowired
     private RacaRepository raceRepository;
+
+    @Autowired
+    private SolicitacaoRepository solicitacaoRepository;
 
     @Autowired
     private ComportamentoRepository comportamentoRepository;
 
     @Autowired
     private CirurgiaRepository cirurgiaRepository;
+
     @Autowired
     private RacaRepository racaRepository;
 
@@ -116,5 +120,16 @@ public class AnimalService {
             e.printStackTrace();
         }
         return new RetornoNumeroTotalAdocao(0);
+    }
+
+    public RetornoPadrao solicitarAdocao(SolicitacaoAdocaoRequest request) {
+        Solicitacao solicitacao = solicitacaoMapper.requestToEntity(request);
+        try{
+            solicitacaoRepository.save(solicitacao);
+            return new RetornoPadrao(true, "Solicitação realizada com sucesso!");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
