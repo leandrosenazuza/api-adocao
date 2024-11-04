@@ -1,8 +1,5 @@
 package api_adocao.Model.DTO;
 
-import api_adocao.Model.Cirurgia;
-import api_adocao.Model.Comportamento;
-import api_adocao.Model.Raca;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

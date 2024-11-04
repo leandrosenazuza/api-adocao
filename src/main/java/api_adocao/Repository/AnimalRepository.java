@@ -10,8 +10,8 @@ import java.util.List;
 @Repository
 public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
-    //@Query("SELECT COALESCE(MAX (e.id), 0) FROM Animal e")
-    //Long findMaxId();
+    @Query(value = "select count(*) from Animal", nativeQuery = true)
+    int getNumeroAnimaisEsperandoAdocao();
 
     List<Animal> findByRacaEspecieId(Long especieId);
 }

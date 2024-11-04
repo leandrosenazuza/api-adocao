@@ -4,7 +4,6 @@ import api_adocao.Model.DTO.UsuarioDTO;
 import api_adocao.Model.Usuario;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class UsuarioMapper {
