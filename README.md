@@ -1,5 +1,10 @@
 ## PARA EXECUTAR O PROJETO
 Basta clonar o projeto localmente e executar em sua IDE. Assim que executado, acessar a página do banco de dados: http://localhost:8080/db. 
+
+# Tecnologias
+## Front: Javascript
+## Backend: SpringBoot - Java 17
+## Banco de Dados - H2
 Usar credencias abaixo:
 ![image](https://github.com/user-attachments/assets/f31a8956-35d1-4bd1-ab93-263523f6f1d2)
 
@@ -9,9 +14,7 @@ Usar credencias abaixo:
 ![image](https://github.com/user-attachments/assets/5c74266c-1b86-4ed1-9a7a-550055add265)
 ![image](https://github.com/user-attachments/assets/20fc4286-f1b0-421d-9747-99cba716e164)
 
-# Tecnologias
-# Front: Javascript
-# Backend: SpringBott - Java 17
+
 
 
 
