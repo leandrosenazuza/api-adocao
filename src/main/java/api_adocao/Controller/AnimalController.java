@@ -2,7 +2,9 @@ package api_adocao.Controller;
 
 import api_adocao.Model.Animal;
 import api_adocao.Model.DTO.AnimalDTO;
+import api_adocao.Model.Request.RequestSolicitacaoAdocao;
 import api_adocao.Model.Response.RetornoNumeroTotalAdocao;
+import api_adocao.Model.Response.RetornoPadrao;
 import api_adocao.Service.AnimalService;
 import api_adocao.Util.Mapper.AnimalMapper;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,6 +22,7 @@ public class AnimalController {
 
     @Autowired
     private final AnimalService animalService;
+
     private final AnimalMapper animalMapper;
 
     @Autowired
@@ -74,4 +77,6 @@ public class AnimalController {
     public ResponseEntity<RetornoNumeroTotalAdocao> getAnimaisAdocao(){
         return ResponseEntity.ok(animalService.recuperarNumeroAniamisAdocao());
     }
+
+
 }

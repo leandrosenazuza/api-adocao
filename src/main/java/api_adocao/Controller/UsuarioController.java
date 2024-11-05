@@ -30,7 +30,6 @@ public class UsuarioController {
         return ResponseEntity.ok(retornoPadrao);
     }
 
-
     @PostMapping
     public ResponseEntity<UsuarioDTO> createUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
