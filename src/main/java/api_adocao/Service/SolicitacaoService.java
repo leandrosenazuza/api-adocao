@@ -7,6 +7,10 @@ import api_adocao.Model.Solicitacao;
 import api_adocao.Repository.SolicitacaoRepository;
 import api_adocao.Util.Mapper.SolicitacaoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -32,15 +36,28 @@ public class SolicitacaoService {
         return null;
     }
 
-    public List<RetornoSolicitacao> listarTodasAdocoesSolicitadas() {
+    public Page<RetornoSolicitacao> listarTodasAdocoesSolicitadas(int page, int pageSize) {
         try{
-            List<Solicitacao> listaSolicitacao = this.solicitacaoRepository.findAll();
-            List<RetornoSolicitacao> retornoListaSolicitacao = this.solicitacaoMapper.entityListToResponseList(listaSolicitacao);
-            return retornoListaSolicitacao;
+            Pageable pageable = PageRequest.of(page, pageSize);
+            Page<Solicitacao> listaSolicitacao = this.solicitacaoRepository.listaSolicitacoes(pageable);
+            List<RetornoSolicitacao> retornoListaSolicitacao = this.solicitacaoMapper.entityListToResponseList(listaSolicitacao.getContent());
+            return new PageImpl<>(retornoListaSolicitacao, pageable, retornoListaSolicitacao.size());
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        return Collections.emptyList();
+        return new PageImpl<>(null);
+    }
+
+    public RetornoPadrao apagarSolicitacao(int id) {
+        try {
+            if(solicitacaoRepository.existsById(id)){
+                solicitacaoRepository.deleteById(id);
+                return new RetornoPadrao(true, "Registro apagado com sucesso!");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return new RetornoPadrao(false, "Erro ao apagar registro");
     }
 }
