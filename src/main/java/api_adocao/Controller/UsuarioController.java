@@ -1,6 +1,8 @@
 package api_adocao.Controller;
 
 import api_adocao.Model.DTO.UsuarioDTO;
+import api_adocao.Model.Request.RequestLogin;
+import api_adocao.Model.Response.RetornoPadrao;
 import api_adocao.Model.Usuario;
 import api_adocao.Service.UsuarioService;
 import api_adocao.Util.Mapper.UsuarioMapper;
@@ -21,10 +23,12 @@ public class UsuarioController {
     private UsuarioMapper usuarioMapper = new UsuarioMapper();
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
-        usuarioService.login(usuario);
-        return ResponseEntity.ok("Sucesso");
+    public ResponseEntity<RetornoPadrao> loginUsuario(@RequestBody RequestLogin requestLogin) {
+        boolean sucessoLogin = usuarioService.login(requestLogin);
+        RetornoPadrao retornoPadrao = new RetornoPadrao();
+        retornoPadrao.setSucesso(sucessoLogin);
+        retornoPadrao.setMensagem(sucessoLogin ? "Login realizado com sucesso!" : "Falha ao realizar o Login!");
+        return ResponseEntity.ok(retornoPadrao);
     }
 
 
