@@ -13,15 +13,25 @@ public class Usuario {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome_porte", nullable = false)
     private String nome;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "usuario_sistema")
+    @Column(name = "usario_sistema")
     private String usarioSistema;
 
     @Column(name = "senha")
     private String senha;
+
+    @Column(name = "isAdministrador")
+    private Boolean isAdministrador;
+
+    @Column(name = "isDoador")
+    private Boolean isDoador;
+
+    @Column(name = "isAdotador")
+    private Boolean isAdotador;
+
 }
