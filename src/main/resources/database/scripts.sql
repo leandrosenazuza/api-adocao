@@ -119,7 +119,6 @@ VALUES ('Mimi', 2.0, 3, 'FEMEA', 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinho
 INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Luna', 1.5, 4, 'FEMEA', 6, 3, TRUE, TRUE, TRUE, TRUE, 'Cachorrinha dócil e brincalhona', 'https://f.i.uol.com.br/fotografia/2022/07/14/165785281162d0d38b9f973_1657852811_3x2_rt.jpg');
 
-
 --INSERTS PARA SOLICITACAO
 INSERT INTO solicitacao (id, nome_interessado, email_interessado, telefone_interessado, animal_id) VALUES
                                                                                                        (1, 'Ana Souza', 'ana.souza@example.com', '11987654321', 1),
