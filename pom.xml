@@ -80,6 +80,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>api_adocao.ApiAdocaoApplication</mainClass>  <!-- Nome completo da classe main -->
+                </configuration>
 			</plugin>
 		</plugins>
 	</build>
