@@ -60,7 +60,4 @@ public class UsuarioController {
         usuarioService.deleteUsuario(id);
         return ResponseEntity.noContent().build();
     }
-
-    // Métodos de mapeamento manual
-
 }
