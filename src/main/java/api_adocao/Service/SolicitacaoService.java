@@ -2,10 +2,12 @@ package api_adocao.Service;
 
 import api_adocao.Model.Request.RequestSolicitacaoAdocao;
 import api_adocao.Model.Response.RetornoPadrao;
+import api_adocao.Model.Response.RetornoPaginado;
 import api_adocao.Model.Response.RetornoSolicitacao;
 import api_adocao.Model.Solicitacao;
 import api_adocao.Repository.SolicitacaoRepository;
 import api_adocao.Util.Mapper.SolicitacaoMapper;
+import api_adocao.Util.Paginacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -36,18 +38,20 @@ public class SolicitacaoService {
         return null;
     }
 
-    public Page<RetornoSolicitacao> listarTodasAdocoesSolicitadas(int page, int pageSize) {
+    public RetornoPaginado listarTodasAdocoesSolicitadas(int page, int pageSize) {
         try{
             Pageable pageable = PageRequest.of(page, pageSize);
             Page<Solicitacao> listaSolicitacao = this.solicitacaoRepository.listaSolicitacoes(pageable);
             List<RetornoSolicitacao> retornoListaSolicitacao = this.solicitacaoMapper.entityListToResponseList(listaSolicitacao.getContent());
-            return new PageImpl<>(retornoListaSolicitacao, pageable, retornoListaSolicitacao.size());
+            int totalPages = Paginacao.getTotalPages(pageSize, solicitacaoRepository.getTotalSolicitacoes());
+            return new RetornoPaginado(retornoListaSolicitacao, pageable.getPageNumber(), pageable.getPageSize(), totalPages, retornoListaSolicitacao.size());
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        return new PageImpl<>(null);
+        return new RetornoPaginado();
     }
+
 
     public RetornoPadrao apagarSolicitacao(int id) {
         try {

@@ -15,4 +15,7 @@ public interface SolicitacaoRepository extends JpaRepository<Solicitacao, Intege
 
     @Query(value = "SELECT * FROM Solicitacao", nativeQuery = true)
     Page<Solicitacao> listaSolicitacoes(Pageable pageable);
+
+    @Query(value = "SELECT count(*) FROM Solicitacao", nativeQuery = true)
+    int getTotalSolicitacoes();
 }

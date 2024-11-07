@@ -26,7 +26,7 @@ public class SolicitacaoController {
     }
 
     @GetMapping("/solicitar/listarTodas")
-    public ResponseEntity<Page<RetornoSolicitacao>> solicitarLista(@RequestHeader(value = "page", defaultValue = "0") int page, @RequestHeader(value="pageSize", defaultValue = "5") int pageSize){
+    public ResponseEntity<RetornoPaginado> solicitarLista(@RequestParam(value = "page") int page, @RequestParam(value="pageSize", defaultValue = "5") int pageSize){
         return ResponseEntity.ok(solicitacaoService.listarTodasAdocoesSolicitadas(page, pageSize));
     }
 
