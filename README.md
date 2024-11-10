@@ -15,6 +15,8 @@ Basta clonar o projeto localmente e executar em sua IDE. Assim que executado, ac
 # Banco de dados - usar credenciais:
 
 ![image](https://github.com/user-attachments/assets/f31a8956-35d1-4bd1-ab93-263523f6f1d2)
+# Nova URL: jdbc:h2:file:./db
+
 
 
 
