@@ -73,6 +73,12 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc11</artifactId>
+			<version>23.7.0.25.01</version> <!-- Verifique a versão mais recente compatível -->
+		</dependency>
     </dependencies>
 
 	<build>
