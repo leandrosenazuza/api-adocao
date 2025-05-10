@@ -1,8 +1,14 @@
 -- Criação da tabela 'especie'
 CREATE TABLE especie (
-                         id BIGSERIAL PRIMARY KEY,
+                         id NUMBER(19) PRIMARY KEY,
                          descricao_especie VARCHAR(255) NOT NULL
 );
+
+CREATE SEQUENCE especie_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
 
 -- Inserções na tabela 'especie'
 INSERT INTO especie (descricao_especie) VALUES ('Gato');
@@ -11,9 +17,15 @@ INSERT INTO especie (descricao_especie) VALUES ('Pássaro');
 
 -- Criação da tabela 'porte'
 CREATE TABLE porte (
-                       id BIGSERIAL PRIMARY KEY,
+                       id NUMBER(19) PRIMARY KEY,
                        descricao_porte VARCHAR(255) NOT NULL
 );
+
+CREATE SEQUENCE porte_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
 
 -- Inserções na tabela 'porte'
 INSERT INTO porte (descricao_porte) VALUES ('Pequeno');
@@ -22,11 +34,17 @@ INSERT INTO porte (descricao_porte) VALUES ('Grande');
 
 -- Criação da tabela 'raca'
 CREATE TABLE raca (
-                      id BIGSERIAL PRIMARY KEY,
+                      id NUMBER(19) PRIMARY KEY,
                       descricao_raca VARCHAR(255) NOT NULL,
                       porte_id BIGINT NOT NULL REFERENCES porte(id) ON DELETE RESTRICT,
                       especie_id BIGINT NOT NULL REFERENCES especie(id) ON DELETE RESTRICT
 );
+
+CREATE SEQUENCE raca_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
 
 -- Inserções na tabela 'raca'
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Labrador', 3, 2);
@@ -41,9 +59,15 @@ INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Golden Retrieve
 
 -- Criação da tabela 'comportamento'
 CREATE TABLE comportamento (
-                               id BIGSERIAL PRIMARY KEY,
+                               id NUMBER(19) PRIMARY KEY,
                                descricao_comportamento VARCHAR(255) NOT NULL
 );
+
+CREATE SEQUENCE comportamento_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
 
 -- Inserções na tabela 'comportamento'
 INSERT INTO comportamento (descricao_comportamento) VALUES ('Calmo');
@@ -55,9 +79,17 @@ INSERT INTO comportamento (descricao_comportamento) VALUES ('Amoroso');
 
 -- Criação da tabela 'cirurgia'
 CREATE TABLE cirurgia (
-                          id BIGSERIAL PRIMARY KEY,
+                          id NUMBER(19) PRIMARY KEY,
                           descricao_cirurgia VARCHAR(255) NOT NULL
 );
+
+CREATE SEQUENCE cirurgia_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+
+
 
 -- Inserções na tabela 'cirurgia'
 INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Castração');
@@ -68,7 +100,7 @@ INSERT INTO cirurgia (descricao_cirurgia) VALUES ('sem cirurgia');
 
 -- Criação da tabela 'animal' (com sexo como VARCHAR e restrição CHECK)
 CREATE TABLE animal (
-                        id BIGSERIAL PRIMARY KEY,
+                        id NUMBER(19) PRIMARY KEY,
                         nome VARCHAR(255) NOT NULL,
                         idade DOUBLE PRECISION NOT NULL,
                         raca_id BIGINT REFERENCES raca(id) ON DELETE SET NULL,
@@ -84,21 +116,39 @@ CREATE TABLE animal (
                         CONSTRAINT sexo_check CHECK (sexo IN ('MACHO', 'FEMEA', 'DESCONHECIDO')) -- Restrição CHECK para sexo
 );
 
+CREATE SEQUENCE animal_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+
 CREATE TABLE usuario (
-                         id BIGSERIAL PRIMARY KEY,
+                         id NUMBER(19) PRIMARY KEY,
                          nome VARCHAR(100),
                          email VARCHAR(100),
                          usuario_sistema VARCHAR(100),
                          senha VARCHAR(100)
 );
 
+CREATE SEQUENCE usuario_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
+
 create TABLE solicitacao(
-                            id BIGSERIAL PRIMARY KEY,
+                            id NUMBER(19) PRIMARY KEY,
                             nome_interessado VARCHAR(100) NOT NULL,
                             email_interessado VARCHAR(100) NOT NULL,
                             telefone_interessado VARCHAR(100) NOT NULL,
                             animal_id BIGINT NOT NULL REFERENCES animal(id) ON DELETE RESTRICT
 );
+
+CREATE SEQUENCE solicitacao_seq
+    START WITH 1
+    INCREMENT BY 1
+    NOCACHE
+    NOCYCLE;
 
 -- Inserções na tabela 'animal' (com sexo como enum)
 

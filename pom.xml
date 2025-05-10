@@ -12,7 +12,7 @@
 	<artifactId>api-adocao</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-adocao</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Api to manage CRUD data for pet adoption</description>
 	<url/>
 	<licenses>
 		<license/>
