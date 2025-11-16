@@ -36,10 +36,9 @@ public class AnimalMapper {
             animalDTO.setNome(animal.getNome());
             animalDTO.setIdade(animal.getIdade());
             animalDTO.setRacaId(animal.getRaca().getId());
-            animalDTO.setSexo(animal.getSexo().name()); // Converte o enum para String
+            animalDTO.setSexo(animal.getSexo().name());
             animalDTO.setComportamentoId(animal.getComportamento().getId());
 
-            // Verificando se há cirurgia associada
             if (animal.getCirurgia() != null) {
                 animalDTO.setCirurgiaId(animal.getCirurgia().getId());
             }
@@ -48,7 +47,6 @@ public class AnimalMapper {
             animalDTO.setVermifugado(animal.isVermifugado());
             animalDTO.setVacinado(animal.isVacinado());
 
-            // Definindo isCirurgia no DTO com base na existência da Cirurgia
             animalDTO.setCirurgia(animal.getCirurgia() != null);
 
             animalDTO.setDescricaoAnimal(animal.getDescricaoAnimal());
@@ -70,16 +68,14 @@ public class AnimalMapper {
             animal.setDescricaoAnimal(animalDTO.getDescricaoAnimal());
             animal.setFoto(animalDTO.getFoto());
 
-            // Busca e associa as entidades relacionadas
             Raca raca = racaRepository.findById(animalDTO.getRacaId())
                     .orElseThrow(() -> new EntidadeNaoEncontradaException("Raça não encontrada!"));
             animal.setRaca(raca);
 
             try {
-                Sexo sexoEnum = Sexo.valueOf(animalDTO.getSexo()); // Converte a String para enum Sexo
+                Sexo sexoEnum = Sexo.valueOf(animalDTO.getSexo());
                 animal.setSexo(sexoEnum);
             } catch (IllegalArgumentException e) {
-                // Trata a exceção  caso o valor  da string não seja um valor válido do enum
                 log.error("Valor inválido para sexo: {}", animalDTO.getSexo(), e);
                 throw new EntidadeNaoEncontradaException("Valor de sexo inválido");
             }
@@ -88,7 +84,6 @@ public class AnimalMapper {
                     .orElseThrow(() -> new EntidadeNaoEncontradaException("Comportamento não encontrado!"));
             animal.setComportamento(comportamento);
 
-            // Correção: Busca a Cirurgia pelo ID (se houver)
             if (animalDTO.getCirurgiaId() != null) {
                 Cirurgia cirurgia = cirurgiaRepository.findById(animalDTO.getCirurgiaId())
                         .orElseThrow(() -> new EntidadeNaoEncontradaException("Cirurgia não encontrada!"));

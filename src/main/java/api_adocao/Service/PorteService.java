@@ -27,8 +27,6 @@ public class PorteService {
     }
 
     public Porte criarPorte(Porte porte) {
-       //Long maxId = porteRepository.findMaxId();
-      // porte.setId(maxId + 1);
        return porteRepository.save(porte);
    }
 

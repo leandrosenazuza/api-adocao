@@ -27,8 +27,6 @@ public class ComportamentoService {
     }
 
     public Comportamento criarComportamento(Comportamento comportamento) {
-        //Long maxId = comportamentoRepository.findMaxId();
-        //comportamento.setId(maxId + 1);
         return comportamentoRepository.save(comportamento);
     }
 

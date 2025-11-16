@@ -6,7 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PorteRepository extends JpaRepository<Porte, Long> {
-
-  //  @Query("SELECT COALESCE(MAX(e.id), 0) FROM Porte e")
-   // long findMaxId();
 }

@@ -14,26 +14,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
 @RequestMapping("/animal")
 public class AnimalController {
 
-    @Autowired
+
     private final AnimalService animalService;
 
     private final AnimalMapper animalMapper;
 
-    @Autowired
+
     public AnimalController(AnimalService animalService, AnimalMapper animalMapper) {
         this.animalService = animalService;
         this.animalMapper = animalMapper;
     }
 
     @GetMapping("/get/all")
-    public List<Animal> getAllAnimals() {
-        return animalService.getAllAnimal();
+    public ResponseEntity<List<AnimalDTO>> getAllAnimals() {
+        List<Animal> animais = animalService.getAllAnimal();
+        List<AnimalDTO> animaisDTO = animais.stream()
+                .map(animal -> animalMapper.toDTO(animal))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(animaisDTO);
     }
 
     @GetMapping("/get/{id}")

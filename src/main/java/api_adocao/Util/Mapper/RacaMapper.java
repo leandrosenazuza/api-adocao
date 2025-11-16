@@ -28,7 +28,6 @@ public class RacaMapper {
     public RacaDTO toDTO(Raca raca) {
         log.debug("Convertendo Raça para DTO: {}", raca);
         if (raca != null) {
-            // ... (código para criar o DTO)
         }
         return null;
     }
