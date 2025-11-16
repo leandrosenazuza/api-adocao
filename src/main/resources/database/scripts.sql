@@ -1,32 +1,16 @@
--- Criação da tabela 'especie'
-CREATE TABLE especie (
-                         id BIGSERIAL PRIMARY KEY,
-                         descricao_especie VARCHAR(255) NOT NULL
-);
+-- Script de inicialização de dados
+-- As tabelas são criadas automaticamente pelo Hibernate
+-- Este script apenas insere os dados iniciais
 
 -- Inserções na tabela 'especie'
 INSERT INTO especie (descricao_especie) VALUES ('Gato');
 INSERT INTO especie (descricao_especie) VALUES ('Cachorro');
 INSERT INTO especie (descricao_especie) VALUES ('Pássaro');
 
--- Criação da tabela 'porte'
-CREATE TABLE porte (
-                       id BIGSERIAL PRIMARY KEY,
-                       descricao_porte VARCHAR(255) NOT NULL
-);
-
 -- Inserções na tabela 'porte'
 INSERT INTO porte (descricao_porte) VALUES ('Pequeno');
 INSERT INTO porte (descricao_porte) VALUES ('Médio');
 INSERT INTO porte (descricao_porte) VALUES ('Grande');
-
--- Criação da tabela 'raca'
-CREATE TABLE raca (
-                      id BIGSERIAL PRIMARY KEY,
-                      descricao_raca VARCHAR(255) NOT NULL,
-                      porte_id BIGINT NOT NULL REFERENCES porte(id) ON DELETE RESTRICT,
-                      especie_id BIGINT NOT NULL REFERENCES especie(id) ON DELETE RESTRICT
-);
 
 -- Inserções na tabela 'raca'
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Labrador', 3, 2);
@@ -38,13 +22,6 @@ INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('SRD', 2, 2);
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Pastor Alemão', 3, 2);
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Golden Retriever', 3, 2);
 
-
--- Criação da tabela 'comportamento'
-CREATE TABLE comportamento (
-                               id BIGSERIAL PRIMARY KEY,
-                               descricao_comportamento VARCHAR(255) NOT NULL
-);
-
 -- Inserções na tabela 'comportamento'
 INSERT INTO comportamento (descricao_comportamento) VALUES ('Calmo');
 INSERT INTO comportamento (descricao_comportamento) VALUES ('Agitado');
@@ -53,60 +30,18 @@ INSERT INTO comportamento (descricao_comportamento) VALUES ('Tímido');
 INSERT INTO comportamento (descricao_comportamento) VALUES ('Dengoso');
 INSERT INTO comportamento (descricao_comportamento) VALUES ('Amoroso');
 
--- Criação da tabela 'cirurgia'
-CREATE TABLE cirurgia (
-                          id BIGSERIAL PRIMARY KEY,
-                          descricao_cirurgia VARCHAR(255) NOT NULL
-);
-
 -- Inserções na tabela 'cirurgia'
 INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Castração');
 INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Retirada de Tumor');
 INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Amputação');
 INSERT INTO cirurgia (descricao_cirurgia) VALUES ('sem cirurgia');
 
+-- Inserções na tabela 'usuario' (usando a sequência criada pelo Hibernate)
+INSERT INTO usuario (id, nome, email, usuario_sistema, senha) VALUES (NEXT VALUE FOR usuario_seq, 'Leandro Zuza', 'leandrosenazuza@gmail.com', 'zuza', '123');
+INSERT INTO usuario (id, nome, email, usuario_sistema, senha) VALUES (NEXT VALUE FOR usuario_seq, 'Thiago', 'thiago@gmail.com', 'thiago', '123');
+INSERT INTO usuario (id, nome, email, usuario_sistema, senha) VALUES (NEXT VALUE FOR usuario_seq, 'Wilson', 'will@gmail.com', 'will', '123');
 
--- Criação da tabela 'animal' (com sexo como VARCHAR e restrição CHECK)
-CREATE TABLE animal (
-                        id BIGSERIAL PRIMARY KEY,
-                        nome VARCHAR(255) NOT NULL,
-                        idade DOUBLE PRECISION NOT NULL,
-                        raca_id BIGINT REFERENCES raca(id) ON DELETE SET NULL,
-                        sexo VARCHAR(255) NOT NULL,  -- sexo agora é enum
-                        comportamento_id BIGINT REFERENCES comportamento(id) ON DELETE SET NULL,
-                        cirurgia_id BIGINT REFERENCES cirurgia(id) ON DELETE SET NULL,
-                        is_castrado BOOLEAN NOT NULL,
-                        is_vermifugado BOOLEAN NOT NULL,
-                        is_vacinado BOOLEAN NOT NULL,
-                        is_cirurgia BOOLEAN NOT NULL,  -- indica se teve cirurgia
-                        descricao_animal TEXT,
-                        foto TEXT,
-                        CONSTRAINT sexo_check CHECK (sexo IN ('MACHO', 'FEMEA', 'DESCONHECIDO')) -- Restrição CHECK para sexo
-);
-
-CREATE TABLE usuario (
-                         id BIGSERIAL PRIMARY KEY,
-                         nome VARCHAR(100),
-                         email VARCHAR(100),
-                         usuario_sistema VARCHAR(100),
-                         senha VARCHAR(100)
-);
-
-create TABLE solicitacao(
-                            id BIGSERIAL PRIMARY KEY,
-                            nome_interessado VARCHAR(100) NOT NULL,
-                            email_interessado VARCHAR(100) NOT NULL,
-                            telefone_interessado VARCHAR(100) NOT NULL,
-                            animal_id BIGINT NOT NULL REFERENCES animal(id) ON DELETE RESTRICT
-);
-
--- Inserções na tabela 'animal' (com sexo como enum)
-
-INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Leandro Zuza', 'leandrosenazuza@gmail.com', 'zuza', '123');
-INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Thiago', 'thiago@gmail.com', 'thiago', '123');
-INSERT INTO usuario (nome, email, usuario_sistema, senha) VALUES ('Wilson', 'will@gmail.com', 'will', '123');
-
--- Inserindo um Labrador de porte grande e espécie canina
+-- Inserções na tabela 'animal'
 INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Rex', 5.0, 1, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão muito amigável e treinado', 'https://upload.wikimedia.org/wikipedia/commons/7/70/Serena_REFON.jpg');
 
@@ -119,12 +54,36 @@ VALUES ('Mimi', 2.0, 3, 'FEMEA', 3, NULL, TRUE, TRUE, TRUE, FALSE, 'Gato carinho
 INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Luna', 1.5, 4, 'FEMEA', 6, 3, TRUE, TRUE, TRUE, TRUE, 'Cachorrinha dócil e brincalhona', 'https://f.i.uol.com.br/fotografia/2022/07/14/165785281162d0d38b9f973_1657852811_3x2_rt.jpg');
 
---INSERTS PARA SOLICITACAO
-INSERT INTO solicitacao (id, nome_interessado, email_interessado, telefone_interessado, animal_id) VALUES
-                                                                                                       (1, 'Ana Souza', 'ana.souza@example.com', '11987654321', 1),
-                                                                                                       (3, 'Carlos Lima', 'carlos.lima@example.com', '21987654321', 2),
-                                                                                                       (4, 'Mariana Silva', 'mariana.silva@example.com', '31987654321', 3),
-                                                                                                       (5, 'Paulo Oliveira', 'paulo.oliveira@example.com', '41987654321', 1),
-                                                                                                       (6, 'Fernanda Costa', 'fernanda.costa@example.com', '51987654321', 2),
-                                                                                                       (7, 'Ricardo Almeida', 'ricardo.almeida@example.com', '61987654321', 3),
-                                                                                                       (8, 'Juliana Pereira', 'juliana.pereira@example.com', '71987654321', 1);
+-- Mais animais para demonstração
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Thor', 4.0, 7, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cão grande e protetor', NULL);
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Bella', 2.5, 8, 'FEMEA', 5, 1, TRUE, TRUE, TRUE, TRUE, 'Cachorrinha muito carinhosa', NULL);
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Felix', 1.0, 5, 'MACHO', 3, NULL, FALSE, TRUE, TRUE, FALSE, 'Gatinho jovem e brincalhão', NULL);
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Nina', 3.5, 6, 'FEMEA', 4, 1, TRUE, TRUE, TRUE, TRUE, 'Cachorrinha tímida mas muito doce', NULL);
+
+-- Inserções na tabela 'estatistica_municipio'
+INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('São Carlos', 498.00, 5011.00, 486.00, 97.59);
+INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('Araraquara', 472.00, 4757.00, 460.00, 97.46);
+INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('Franca', 699.00, 7049.00, 681.00, 97.42);
+INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('Ribeirão Preto', 1371.00, 13834.00, 1336.00, 97.45);
+INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('Bauru', 744.00, 7508.00, 725.00, 97.45);
+INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('Piracicaba', 794.00, 8012.00, 774.00, 97.48);
+INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('Rio Claro', 403.00, 4062.00, 392.00, 97.27);
+INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('Jaboticabal', 150.00, 1514.00, 146.00, 97.33);
+INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('Batatais', 125.00, 1257.00, 121.00, 96.80);
+INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('Brodowski', 49.00, 492.00, 48.00, 97.96);
+
+-- Inserções na tabela 'solicitacao'
+INSERT INTO solicitacao (nome_interessado, email_interessado, telefone_interessado, animal_id) VALUES ('Ana Souza', 'ana.souza@example.com', '11987654321', 1);
+INSERT INTO solicitacao (nome_interessado, email_interessado, telefone_interessado, animal_id) VALUES ('Carlos Lima', 'carlos.lima@example.com', '21987654321', 2);
+INSERT INTO solicitacao (nome_interessado, email_interessado, telefone_interessado, animal_id) VALUES ('Mariana Silva', 'mariana.silva@example.com', '31987654321', 3);
+INSERT INTO solicitacao (nome_interessado, email_interessado, telefone_interessado, animal_id) VALUES ('Paulo Oliveira', 'paulo.oliveira@example.com', '41987654321', 1);
+INSERT INTO solicitacao (nome_interessado, email_interessado, telefone_interessado, animal_id) VALUES ('Fernanda Costa', 'fernanda.costa@example.com', '51987654321', 2);
+INSERT INTO solicitacao (nome_interessado, email_interessado, telefone_interessado, animal_id) VALUES ('Ricardo Almeida', 'ricardo.almeida@example.com', '61987654321', 3);
+INSERT INTO solicitacao (nome_interessado, email_interessado, telefone_interessado, animal_id) VALUES ('Juliana Pereira', 'juliana.pereira@example.com', '71987654321', 1);
