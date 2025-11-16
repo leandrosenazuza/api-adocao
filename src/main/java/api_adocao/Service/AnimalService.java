@@ -1,20 +1,18 @@
 package api_adocao.Service;
 
 import api_adocao.Exceptions.EntidadeNaoEncontradaException;
-import api_adocao.Model.*;
+import api_adocao.Model.Animal;
+import api_adocao.Model.Cirurgia;
+import api_adocao.Model.Comportamento;
 import api_adocao.Model.DTO.AnimalDTO;
-import api_adocao.Model.Request.RequestSolicitacaoAdocao;
+import api_adocao.Model.Raca;
 import api_adocao.Model.Response.RetornoNumeroTotalAdocao;
-import api_adocao.Model.Response.RetornoPadrao;
-import api_adocao.Model.Response.RetornoSolicitacao;
 import api_adocao.Repository.*;
 import api_adocao.Util.Mapper.AnimalMapper;
 import api_adocao.Util.Mapper.SolicitacaoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service

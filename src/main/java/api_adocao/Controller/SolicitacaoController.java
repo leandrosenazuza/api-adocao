@@ -6,8 +6,6 @@ import api_adocao.Model.Response.RetornoPaginado;
 import api_adocao.Model.Response.RetornoSolicitacao;
 import api_adocao.Service.SolicitacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
