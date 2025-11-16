@@ -390,14 +390,3 @@ src/main/resources/database/scripts.sql
 
 Após modificar, reinicie a aplicação. O `DataInitializer` verificará se há dados e executará o script se necessário.
 
----
-
-## 📝 Licença
-
-[Adicione informações de licença aqui]
-
----
-
-## 📧 Contato
-
-[Adicione informações de contato aqui]
