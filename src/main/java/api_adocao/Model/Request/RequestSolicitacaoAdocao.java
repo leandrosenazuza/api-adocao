@@ -8,4 +8,5 @@ public class RequestSolicitacaoAdocao {
     private String telefoneInteressado;
     private String emailInteressado;
     private Long animalId;
+    private Long usuarioId;
 }

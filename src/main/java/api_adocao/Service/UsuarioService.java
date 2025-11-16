@@ -41,9 +41,17 @@ public class UsuarioService {
 
     public boolean login(RequestLogin requestLogin) {
         Usuario usuario = usuarioRepository.buscarPorUsuario(requestLogin.getUsarioSistema());
-        if(requestLogin.getSenha().equals(usuario.getSenha())) {
+        if(usuario != null && requestLogin.getSenha().equals(usuario.getSenha())) {
             return true;
         } else return false;
+    }
+
+    public Usuario loginComUsuario(RequestLogin requestLogin) {
+        Usuario usuario = usuarioRepository.buscarPorUsuario(requestLogin.getUsarioSistema());
+        if(usuario != null && requestLogin.getSenha().equals(usuario.getSenha())) {
+            return usuario;
+        }
+        return null;
     }
 
 }

@@ -5,7 +5,9 @@ import api_adocao.Model.DTO.AnimalDTO;
 import api_adocao.Model.Request.RequestSolicitacaoAdocao;
 import api_adocao.Model.Response.RetornoSolicitacao;
 import api_adocao.Model.Solicitacao;
+import api_adocao.Model.Usuario;
 import api_adocao.Repository.AnimalRepository;
+import api_adocao.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,8 @@ public class SolicitacaoMapper {
     private AnimalRepository animalRepository;
     @Autowired
     private AnimalMapper animalMapper;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public Solicitacao requestToEntity(RequestSolicitacaoAdocao request) {
         Solicitacao solicitacao = new Solicitacao();
@@ -30,6 +34,13 @@ public class SolicitacaoMapper {
 
         if(animal != null) {
             solicitacao.setAnimal(animal);
+        }
+
+        if(request.getUsuarioId() != null) {
+            Usuario usuario = usuarioRepository.findById(request.getUsuarioId()).orElse(null);
+            if(usuario != null) {
+                solicitacao.setUsuario(usuario);
+            }
         }
 
         return solicitacao;

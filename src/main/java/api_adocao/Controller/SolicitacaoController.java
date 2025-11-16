@@ -30,6 +30,11 @@ public class SolicitacaoController {
         return ResponseEntity.ok(solicitacaoService.listarTodasAdocoesSolicitadas(page, pageSize));
     }
 
+    @GetMapping("/solicitar/listarTodasSemPaginacao")
+    public ResponseEntity<List<RetornoSolicitacao>> listarTodasSemPaginacao(){
+        return ResponseEntity.ok(solicitacaoService.listarTodasSemPaginacao());
+    }
+
     @DeleteMapping("/solicitar/apagar/{id}")
     public ResponseEntity<RetornoPadrao> apagarSolicitacao(@PathVariable(value = "id") int id){
         return ResponseEntity.ok(solicitacaoService.apagarSolicitacao(id));

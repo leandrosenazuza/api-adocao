@@ -31,11 +31,17 @@ public class SolicitacaoService {
         Solicitacao solicitacao = solicitacaoMapper.requestToEntity(request);
         try{
             solicitacaoRepository.save(solicitacao);
-            return new RetornoPadrao(true, "Solicitação realizada com sucesso!");
+            RetornoPadrao retorno = new RetornoPadrao();
+            retorno.setSucesso(true);
+            retorno.setMensagem("Solicitação realizada com sucesso!");
+            return retorno;
         }catch (Exception e){
             e.printStackTrace();
         }
-        return null;
+        RetornoPadrao retorno = new RetornoPadrao();
+        retorno.setSucesso(false);
+        retorno.setMensagem("Erro ao realizar solicitação");
+        return retorno;
     }
 
     public RetornoPaginado listarTodasAdocoesSolicitadas(int page, int pageSize) {
@@ -52,16 +58,31 @@ public class SolicitacaoService {
         return new RetornoPaginado();
     }
 
+    public List<RetornoSolicitacao> listarTodasSemPaginacao() {
+        try{
+            List<Solicitacao> listaSolicitacao = this.solicitacaoRepository.findAll();
+            return this.solicitacaoMapper.entityListToResponseList(listaSolicitacao);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
+    }
 
     public RetornoPadrao apagarSolicitacao(int id) {
         try {
             if(solicitacaoRepository.existsById(id)){
                 solicitacaoRepository.deleteById(id);
-                return new RetornoPadrao(true, "Registro apagado com sucesso!");
+                RetornoPadrao retorno = new RetornoPadrao();
+                retorno.setSucesso(true);
+                retorno.setMensagem("Registro apagado com sucesso!");
+                return retorno;
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return new RetornoPadrao(false, "Erro ao apagar registro");
+        RetornoPadrao retorno = new RetornoPadrao();
+        retorno.setSucesso(false);
+        retorno.setMensagem("Erro ao apagar registro");
+        return retorno;
     }
 }

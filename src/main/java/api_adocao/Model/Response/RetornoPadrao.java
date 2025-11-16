@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class RetornoPadrao {
     private boolean sucesso = false;
     private String mensagem = "";
+    private Long usuarioId;
 }

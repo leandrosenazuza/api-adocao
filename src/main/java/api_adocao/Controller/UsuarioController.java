@@ -23,10 +23,16 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public ResponseEntity<RetornoPadrao> loginUsuario(@RequestBody RequestLogin requestLogin) {
-        boolean sucessoLogin = usuarioService.login(requestLogin);
+        Usuario usuario = usuarioService.loginComUsuario(requestLogin);
         RetornoPadrao retornoPadrao = new RetornoPadrao();
-        retornoPadrao.setSucesso(sucessoLogin);
-        retornoPadrao.setMensagem(sucessoLogin ? "Login realizado com sucesso!" : "Falha ao realizar o Login!");
+        if(usuario != null) {
+            retornoPadrao.setSucesso(true);
+            retornoPadrao.setMensagem("Login realizado com sucesso!");
+            retornoPadrao.setUsuarioId(usuario.getId());
+        } else {
+            retornoPadrao.setSucesso(false);
+            retornoPadrao.setMensagem("Falha ao realizar o Login!");
+        }
         return ResponseEntity.ok(retornoPadrao);
     }
 
