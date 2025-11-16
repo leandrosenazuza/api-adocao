@@ -26,8 +26,6 @@ public class CirurgiaService {
     }
 
     public Cirurgia criarCirurgia(Cirurgia cirurgia) {
-        //Long maxId = cirurgiaRepository.findMaxId();
-        //cirurgia.setId(maxId + 1);
         return cirurgiaRepository.save(cirurgia);
     }
 

@@ -37,25 +37,20 @@ public class RacaService {
 
 
     public Raca criarRaca(Raca raca) {
-        log.info("Criando nova raça: {}", raca.getDescricaoRaca()); // Log com a descrição da raça
+        log.info("Criando nova raça: {}", raca.getDescricaoRaca());
         return racaRepository.save(raca);
     }
 
 
     public Raca atualizarRaca(Long id, Raca racaAtualizada) {
-        log.info("Atualizando raça com ID {}: {}", id, racaAtualizada.getDescricaoRaca()); // Log com ID e descrição
-        //Raca racaExistente = buscarRacaPorId(id);
-
-        // Busca a raça existente pelo ID
+        log.info("Atualizando raça com ID {}: {}", id, racaAtualizada.getDescricaoRaca());
         Raca racaExistente = racaRepository.findById(id)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Raça não encontrada com ID: " + id));
 
-        // Atualiza os atributos da raça existente com os valores da raça recebida
         racaExistente.setDescricaoRaca(racaAtualizada.getDescricaoRaca());
         racaExistente.setEspecie(racaAtualizada.getEspecie());
         racaExistente.setPorte(racaAtualizada.getPorte());
 
-        // Salva a raça atualizada no banco de dados
         return racaRepository.save(racaExistente);
 
 
@@ -63,7 +58,7 @@ public class RacaService {
 
 
     public void deletarRaca(Long id) {
-        log.info("Deletando raça com ID: {}", id); // Log com o ID deletado
+        log.info("Deletando raça com ID: {}", id);
         Raca raca = buscarRacaPorId(id);
         racaRepository.delete(raca);
     }

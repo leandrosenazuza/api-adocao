@@ -17,7 +17,6 @@ import java.util.UUID;
 @RequestMapping("/api/images")
 public class ImageController {
 
-    // Usar caminho relativo ao diretório do projeto
     private static final String UPLOAD_DIR = "src/main/resources/static/images/";
 
     @PostMapping("/upload")
@@ -27,13 +26,11 @@ public class ImageController {
                 return ResponseEntity.badRequest().body("Arquivo vazio");
             }
 
-            // Validar tipo de arquivo
             String contentType = file.getContentType();
             if (contentType == null || !contentType.startsWith("image/")) {
                 return ResponseEntity.badRequest().body("Apenas arquivos de imagem são permitidos");
             }
 
-            // Criar diretório se não existir
             File uploadDir = new File(UPLOAD_DIR);
             if (!uploadDir.exists()) {
                 boolean created = uploadDir.mkdirs();
@@ -43,7 +40,6 @@ public class ImageController {
                 }
             }
 
-            // Gerar nome único para o arquivo
             String originalFilename = file.getOriginalFilename();
             String extension = "";
             if (originalFilename != null && originalFilename.contains(".")) {
@@ -51,11 +47,9 @@ public class ImageController {
             }
             String filename = UUID.randomUUID().toString() + extension;
 
-            // Salvar arquivo
             Path filePath = Paths.get(UPLOAD_DIR + filename);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-            // Retornar nome do arquivo salvo
             return ResponseEntity.ok(filename);
         } catch (IOException e) {
             e.printStackTrace();

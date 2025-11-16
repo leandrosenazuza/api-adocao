@@ -6,7 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ComportamentoRepository extends JpaRepository<Comportamento, Long> {
-
-    //@Query("SELECT COALESCE(MAX (e.id), 0) FROM Comportamento e")
-   // Long findMaxId();
 }

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// Service para gerenciar as operações relacionadas a animais.
 @Service
 public class AnimalService {
 
@@ -62,9 +61,6 @@ public class AnimalService {
     public Animal atualizarAnimal(Long id, AnimalDTO animalDTO) {
         Animal animalExistente = buscarAnimalPorId(id);
 
-        //animalExistente.setDescricaoAnimal(animalAtualizado.getDescricaoAnimal());
-
-        // Atualiza os atributos simples
         animalExistente.setNome(animalDTO.getNome());
         animalExistente.setIdade(animalDTO.getIdade());
         animalExistente.setCastrado(animalDTO.isCastrado());
@@ -80,12 +76,10 @@ public class AnimalService {
         animalExistente.setDescricaoAnimal(animalDTO.getDescricaoAnimal());
         animalExistente.setFoto(animalDTO.getFoto());
 
-        // Atualiza as entidades relacionadas (Raca, Comportamento, Cirurgia)
         atualizarEntidadesRelacionadas(animalExistente, animalDTO);
         return animalRepository.save(animalExistente);
     }
 
-    //Métodp auxiliar com visibilidade "protect"
     protected void atualizarEntidadesRelacionadas(Animal animal, AnimalDTO animalDTO) {
         Raca novaRaca = racaRepository.findById(animalDTO.getRacaId())
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Raça não encontrada!"));

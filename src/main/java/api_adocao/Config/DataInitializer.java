@@ -21,13 +21,11 @@ public class DataInitializer {
 
     @PostConstruct
     public void init() {
-        // Verifica se já existem dados para não duplicar
         if (especieRepository.count() > 0) {
             return;
         }
 
         try {
-            // Executa o script SQL
             ClassPathResource script = new ClassPathResource("database/scripts.sql");
             try (Connection connection = dataSource.getConnection()) {
                 ScriptUtils.executeSqlScript(connection, script);
