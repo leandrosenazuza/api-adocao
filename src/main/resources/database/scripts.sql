@@ -21,6 +21,7 @@ INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Vira-lata', 1, 
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('SRD', 2, 2);
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Pastor Alemão', 3, 2);
 INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Golden Retriever', 3, 2);
+INSERT INTO raca (descricao_raca, porte_id, especie_id) VALUES ('Galinha', 1, 3);
 
 -- Inserções na tabela 'comportamento'
 INSERT INTO comportamento (descricao_comportamento) VALUES ('Calmo');
@@ -67,6 +68,81 @@ VALUES ('Felix', 1.0, 5, 'MACHO', 3, NULL, FALSE, TRUE, TRUE, FALSE, 'Gatinho jo
 
 INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
 VALUES ('Nina', 3.5, 6, 'FEMEA', 4, 1, TRUE, TRUE, TRUE, TRUE, 'Cachorrinha tímida mas muito doce', NULL);
+
+-- Mais animais com imagens locais (nomes padronizados: cat_1, cat_2, etc.)
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Mel', 2.0, 5, 'FEMEA', 5, 1, TRUE, TRUE, TRUE, TRUE, 'Gatinha muito carinhosa e brincalhona', 'cat_1.jpg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Bolinha', 1.5, 3, 'MACHO', 3, NULL, FALSE, TRUE, TRUE, FALSE, 'Gatinho jovem e muito ativo', 'cat_2.jpg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Luna', 3.0, 4, 'FEMEA', 6, 1, TRUE, TRUE, TRUE, TRUE, 'Gata persa muito tranquila e amorosa', 'cat_3.jpg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Simba', 4.5, 5, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Gato adulto calmo e companheiro', 'cat_4.jpg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Chico', 1.0, 5, 'MACHO', 3, NULL, FALSE, TRUE, FALSE, FALSE, 'Gatinho filhote muito brincalhão', 'cat_5.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Nina', 2.5, 3, 'FEMEA', 5, 1, TRUE, TRUE, TRUE, TRUE, 'Gata siamesa dengosa e carinhosa', 'cat_6.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Tigre', 5.0, 5, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Gato adulto muito tranquilo e amigável', 'cat_7.jpeg');
+
+-- Cachorros com nomes padronizados (dog_1, dog_2, etc.)
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Toby', 2.0, 1, 'MACHO', 2, 1, TRUE, TRUE, TRUE, TRUE, 'Labrador muito brincalhão e energético', 'dog_1.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Lola', 3.5, 2, 'FEMEA', 5, 1, TRUE, TRUE, TRUE, TRUE, 'Poodle muito carinhosa e inteligente', 'dog_2.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Zeus', 4.0, 7, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Pastor Alemão protetor e leal', 'dog_3.jpg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Daisy', 1.5, 8, 'FEMEA', 6, NULL, FALSE, TRUE, TRUE, FALSE, 'Golden Retriever filhote muito doce', 'dog_4.jpg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Rocky', 3.0, 6, 'MACHO', 2, 2, TRUE, TRUE, FALSE, FALSE, 'Cachorro SRD muito ativo e brincalhão', 'dog_5.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Maya', 2.5, 1, 'FEMEA', 5, 1, TRUE, TRUE, TRUE, TRUE, 'Labradora muito amigável e carinhosa', 'dog_6.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Jack', 4.5, 6, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Cachorro SRD adulto muito tranquilo', 'dog_7.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Sophia', 1.0, 2, 'FEMEA', 3, NULL, FALSE, TRUE, TRUE, FALSE, 'Poodle filhote muito brincalhona', 'dog_8.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Charlie', 3.0, 8, 'MACHO', 6, 1, TRUE, TRUE, TRUE, TRUE, 'Golden Retriever muito amoroso e dócil', 'dog_9.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Lily', 2.0, 1, 'FEMEA', 5, 1, TRUE, TRUE, TRUE, TRUE, 'Labradora jovem muito carinhosa', 'dog_10.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Maximus', 5.0, 7, 'MACHO', 1, 1, TRUE, TRUE, TRUE, TRUE, 'Pastor Alemão adulto muito protetor', 'dog_11.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Bella', 1.5, 2, 'FEMEA', 6, NULL, FALSE, TRUE, TRUE, FALSE, 'Poodle filhote muito doce e amorosa', 'dog_12.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Duke', 3.5, 6, 'MACHO', 2, 1, TRUE, TRUE, FALSE, TRUE, 'Cachorro SRD muito ativo e brincalhão', 'dog_13.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Princess', 2.5, 8, 'FEMEA', 5, 1, TRUE, TRUE, TRUE, TRUE, 'Golden Retriever muito carinhosa e dócil', 'dog_14.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Buddy', 4.0, 1, 'MACHO', 6, 1, TRUE, TRUE, TRUE, TRUE, 'Labrador muito amigável e companheiro', 'dog_15.jpeg');
+
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Rosie', 1.5, 2, 'FEMEA', 3, NULL, FALSE, TRUE, TRUE, FALSE, 'Poodle filhote muito brincalhona e alegre', 'dog_16.jpeg');
+
+-- Galinha com nome padronizado
+INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
+VALUES ('Penelope', 1.0, 9, 'FEMEA', 1, NULL, FALSE, TRUE, TRUE, FALSE, 'Galinha muito dócil e amigável', 'chicken_1.jpeg');
 
 -- Inserções na tabela 'estatistica_municipio'
 INSERT INTO estatistica_municipio (municipio, adocoes_anuais, castracoes_anuais, recolhimentos, taxa_abandono) VALUES ('São Carlos', 498.00, 5011.00, 486.00, 97.59);
