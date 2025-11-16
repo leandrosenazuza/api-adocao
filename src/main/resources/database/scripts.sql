@@ -37,9 +37,10 @@ INSERT INTO cirurgia (descricao_cirurgia) VALUES ('Amputação');
 INSERT INTO cirurgia (descricao_cirurgia) VALUES ('sem cirurgia');
 
 -- Inserções na tabela 'usuario' (usando a sequência criada pelo Hibernate)
-INSERT INTO usuario (id, nome, email, usuario_sistema, senha) VALUES (NEXT VALUE FOR usuario_seq, 'Leandro Zuza', 'leandrosenazuza@gmail.com', 'zuza', '123');
-INSERT INTO usuario (id, nome, email, usuario_sistema, senha) VALUES (NEXT VALUE FOR usuario_seq, 'Thiago', 'thiago@gmail.com', 'thiago', '123');
-INSERT INTO usuario (id, nome, email, usuario_sistema, senha) VALUES (NEXT VALUE FOR usuario_seq, 'Wilson', 'will@gmail.com', 'will', '123');
+-- No PostgreSQL, usa-se nextval('sequence_name') para obter o próximo valor da sequência
+INSERT INTO usuario (id, nome, email, usuario_sistema, senha) VALUES (nextval('usuario_seq'), 'Leandro Zuza', 'leandrosenazuza@gmail.com', 'zuza', '123');
+INSERT INTO usuario (id, nome, email, usuario_sistema, senha) VALUES (nextval('usuario_seq'), 'Thiago', 'thiago@gmail.com', 'thiago', '123');
+INSERT INTO usuario (id, nome, email, usuario_sistema, senha) VALUES (nextval('usuario_seq'), 'Wilson', 'will@gmail.com', 'will', '123');
 
 -- Inserções na tabela 'animal'
 INSERT INTO animal (nome, idade, raca_id, sexo, comportamento_id, cirurgia_id, is_castrado, is_vermifugado, is_vacinado, is_cirurgia, descricao_animal, foto)
