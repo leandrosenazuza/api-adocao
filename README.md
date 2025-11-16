@@ -344,22 +344,80 @@ mvn clean install
 
 ## 📸 Imagens do Frontend
 
-<!-- Adicione aqui as imagens do frontend -->
-
 ### Tela de Login
-![Login](caminho/para/imagem/login.png)
+A tela de login permite acesso ao sistema com usuário e senha.
 
-### Dashboard Principal
-![Dashboard](caminho/para/imagem/dashboard.png)
+![Tela de Login](images/login.png)
+
+**Características:**
+- Interface limpa e intuitiva
+- Validação de campos obrigatórios
+- Background com imagem de animal
+- Logo da aplicação "PATA AMADA"
+
+---
 
 ### Listagem de Animais
-![Animais](caminho/para/imagem/animais.png)
+Visualização em cards dos animais cadastrados no sistema.
 
-### Formulário de Cadastro
-![Cadastro](caminho/para/imagem/cadastro.png)
+![Listagem de Animais](images/animais-lista.png)
+
+**Características:**
+- Cards com foto, nome, idade e descrição
+- Botões de editar e excluir para cada animal
+- Botão "Novo animal" para cadastro
+- Layout responsivo em grid
+
+---
+
+### Formulário de Cadastro de Animais
+Formulário completo para cadastro de novos animais.
+
+![Formulário de Cadastro](images/animais-cadastro.png)
+
+**Campos disponíveis:**
+- Nome, Idade, Raça, Sexo
+- Comportamento e Cirurgia (opcional)
+- Checkboxes: Castrado, Vermifugado, Vacinado
+- Descrição do animal
+- Upload de imagem ou URL
+
+---
+
+### Monitoramento IoT
+Sistema de monitoramento em tempo real utilizando tecnologia IoT.
+
+![Monitoramento IoT](images/monitoramento-iot.png)
+
+**Funcionalidades:**
+- Atualização automática a cada 5 segundos
+- Monitoramento de temperatura e umidade
+- Dados por setor (Setor A, B, C)
+- Timestamp de última atualização
+
+**Dados exibidos:**
+- Temperatura em °C
+- Umidade em %
+- Localização do sensor
+
+---
 
 ### Estatísticas
-![Estatísticas](caminho/para/imagem/estatisticas.png)
+Dashboard com estatísticas gerais e por município.
+
+![Estatísticas](images/estatisticas.png)
+
+**Métricas exibidas:**
+- Total de Adoções
+- Total de Castrações
+- Total de Recolhimentos
+- Taxa Média de Abandono
+
+**Tabela por Município:**
+- Adoções Anuais
+- Castrações Anuais
+- Recolhimentos
+- Taxa de Abandono (%)
 
 ---
 
